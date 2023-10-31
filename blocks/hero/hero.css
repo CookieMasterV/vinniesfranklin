@@ -1,39 +1,84 @@
 /* block specific CSS goes here */
-
-main .hero-container > div {
+.full-width.hero-container {
+  width: 100%;
+}
+.full-width .hero-wrapper {
   max-width: unset;
 }
-  
-main .hero-container {
-  padding: 0;
+.hero-wrapper {
+  max-width: 1440px;
 }
-  
-main .hero {
-  position: relative;
-  padding: 32px;
-  min-height: 300px;
-}
-
-main .hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: white;
-}
-
-main .hero picture {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  object-fit: cover;
-  box-sizing: border-box;
-}
-
-main .hero img {
-  object-fit: cover;
-  width: 100%;
+.hero-wrapper .hero {
   height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.hero-wrapper .fixed-bg {
+  height: 906px;
+}
+/* homepage */
+.hero-wrapper .fixed-bg.bg-1 {
+  background: url("../../imgs/non-branded_KV-v1.png") no-repeat center;
+
+}
+.hero-wrapper .hero-logo {
+  width: 100%;
+  padding-left: 38px;
+  padding-top: 39px;
+}
+.hero-wrapper .hero-info {
+  display: flex;
+  gap: 495px;
+  flex: 0.45;
+  align-items: flex-end;
+}
+.hero-wrapper .hero-info h2 {
+  font-size: 80px;
+}
+.hero-wrapper .hero-info div:first-child h2 {
+  color: #fff;
+}
+.hero-wrapper .hero-info div:last-child h2 {
+  color: var(--primary-color);
+}
+/* symptoms page */
+/* homepage */
+.hero-wrapper .fixed-bg.bg-2-1 {
+  background: url("../../imgs/BG-mask-v2.png") no-repeat center;
+  height: 780px;
+  position: relative;
+}
+.banner-text .hero-info div:first-child h2 {
+  font-size: 80px;
+  line-height: 86px;
+  color: var(--text-color);
+  font-weight: normal;
+}
+.banner-text .hero-info div:last-child {
+  font-size: 20px;
+  line-height: 28px;
+}
+.banner-text .hero-info {
+  gap: 100px;
+  flex: 1;
+  align-items: flex-start;
+  padding: 0 135px;
+}
+.banner-text .hero-info div:first-child {
+  margin-top: 50px;
+}
+.banner-text .hero-info div:last-child {
+  margin-top: 200px;
+}
+.banner-text .hero-info div:last-child p:not(:last-child) {
+  margin-bottom: 40px;
+}
+.hero-wrapper .banner-text .hero-ref {
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--secondary-color);
+  font-weight: bold;
+  position: absolute;
+  bottom: 30px;
+  left: 145px;
 }

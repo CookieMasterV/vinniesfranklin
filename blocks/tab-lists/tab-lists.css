@@ -1,0 +1,33 @@
+.tab-lists {
+  height: 79px;
+  background-color: var(--secondary-color);
+}
+.tab-lists div {
+  height: 100%;
+}
+.tab-lists ul {
+  height: 100%;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-lists ul li a {
+  font-size: 18px;
+  line-height: 20px;
+  color: #fff;
+  font-weight: 500;
+}
+.tab-lists ul li a::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  border: 2px solid #fff;
+  margin-right: 11px;
+  margin-bottom: 5px;
+  transition: all ease 0.3s;
+}
+.tab-lists ul li a:hover::before {
+  margin-right: 0;
+}

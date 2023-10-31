@@ -41,19 +41,14 @@ export function sampleRUM(checkpoint, data = {}) {
       const id = `${hashCode(window.location.href)}-${new Date().getTime()}-${Math.random().toString(16).substr(2, 14)}`;
       const random = Math.random();
       const isSelected = (random * weight < 1);
-      const urlSanitizers = {
-        full: () => window.location.href,
-        origin: () => window.location.origin,
-        path: () => window.location.href.replace(/\?.*$/, ''),
-      };
-      // eslint-disable-next-line object-curly-newline, max-len
-      window.hlx.rum = { weight, id, random, isSelected, sampleRUM, sanitizeURL: urlSanitizers[window.hlx.RUM_MASK_URL || 'path'] };
+      // eslint-disable-next-line object-curly-newline
+      window.hlx.rum = { weight, id, random, isSelected, sampleRUM };
     }
     const { weight, id } = window.hlx.rum;
     if (window.hlx && window.hlx.rum && window.hlx.rum.isSelected) {
       const sendPing = (pdata = data) => {
         // eslint-disable-next-line object-curly-newline, max-len, no-use-before-define
-        const body = JSON.stringify({ weight, id, referer: window.hlx.rum.sanitizeURL(), checkpoint, ...data });
+        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data });
         const url = `https://rum.hlx.page/.rum/${weight}`;
         // eslint-disable-next-line no-unused-expressions
         navigator.sendBeacon(url, body);
@@ -80,47 +75,21 @@ export function sampleRUM(checkpoint, data = {}) {
 
 /**
  * Loads a CSS file.
- * @param {string} href URL to the CSS file
+ * @param {string} href The path to the CSS file
  */
-export async function loadCSS(href) {
-  return new Promise((resolve, reject) => {
-    if (!document.querySelector(`head > link[href="${href}"]`)) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = href;
-      link.onload = resolve;
-      link.onerror = reject;
-      document.head.append(link);
-    } else {
-      resolve();
+export function loadCSS(href, callback) {
+  if (!document.querySelector(`head > link[href="${href}"]`)) {
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('href', href);
+    if (typeof callback === 'function') {
+      link.onload = (e) => callback(e.type);
+      link.onerror = (e) => callback(e.type);
     }
-  });
-}
-
-/**
- * Loads a non module JS file.
- * @param {string} src URL to the JS file
- * @param {Object} attrs additional optional attributes
- */
-
-export async function loadScript(src, attrs) {
-  return new Promise((resolve, reject) => {
-    if (!document.querySelector(`head > script[src="${src}"]`)) {
-      const script = document.createElement('script');
-      script.src = src;
-      if (attrs) {
-      // eslint-disable-next-line no-restricted-syntax, guard-for-in
-        for (const attr in attrs) {
-          script.setAttribute(attr, attrs[attr]);
-        }
-      }
-      script.onload = resolve;
-      script.onerror = reject;
-      document.head.append(script);
-    } else {
-      resolve();
-    }
-  });
+    document.head.appendChild(link);
+  } else if (typeof callback === 'function') {
+    callback('noop');
+  }
 }
 
 /**
@@ -202,12 +171,7 @@ export async function decorateIcons(element) {
     }
   }));
 
-  const symbols = Object
-    .keys(ICONS_CACHE).filter((k) => !svgSprite.querySelector(`#icons-sprite-${k}`))
-    .map((k) => ICONS_CACHE[k])
-    .filter((v) => !v.styled)
-    .map((v) => v.html)
-    .join('\n');
+  const symbols = Object.values(ICONS_CACHE).filter((v) => !v.styled).map((v) => v.html).join('\n');
   svgSprite.innerHTML += symbols;
 
   icons.forEach((span) => {
@@ -232,26 +196,22 @@ export async function fetchPlaceholders(prefix = 'default') {
   const loaded = window.placeholders[`${prefix}-loaded`];
   if (!loaded) {
     window.placeholders[`${prefix}-loaded`] = new Promise((resolve, reject) => {
-      fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
-        .then((resp) => {
-          if (resp.ok) {
-            return resp.json();
-          }
-          throw new Error(`${resp.status}: ${resp.statusText}`);
-        }).then((json) => {
-          const placeholders = {};
-          json.data
-            .filter((placeholder) => placeholder.Key)
-            .forEach((placeholder) => {
+      try {
+        fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
+          .then((resp) => resp.json())
+          .then((json) => {
+            const placeholders = {};
+            json.data.forEach((placeholder) => {
               placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
             });
-          window.placeholders[prefix] = placeholders;
-          resolve();
-        }).catch((error) => {
-          // error loading placeholders
-          window.placeholders[prefix] = {};
-          reject(error);
-        });
+            window.placeholders[prefix] = placeholders;
+            resolve();
+          });
+      } catch (error) {
+        // error loading placeholders
+        window.placeholders[prefix] = {};
+        reject();
+      }
     });
   }
   await window.placeholders[`${prefix}-loaded`];
@@ -318,27 +278,80 @@ export function readBlockConfig(block) {
   return config;
 }
 
+export function goToAnchor(id, e) {
+  e.preventDefault();
+  if (document.querySelector(id)) {
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
+}
+
+export function isSvg(filename) {
+  const reg = /.svg/;
+  return reg.test(filename);
+}
+
+export function setSvg(filename) {
+  const svgInfo = filename.split('/');
+  if (svgInfo.length === 1) svgInfo.push('');
+  return `<img src="/icons/${svgInfo[0]}" alt="${svgInfo[1]}" loading="lazy">`;
+}
+
+/**
+ * Delete all space.
+ */
+export function deleteSpace(ele) {
+  if (ele.querySelector('.footer-references')) return;
+  const html = ele.innerHTML
+    .replace(/ <del>/g, '<del>')
+    .replace(/<\/del> /g, '</del>')
+    .replace(/ <strong>/g, '<strong>')
+    .replace(/<\/strong> /g, '</strong>')
+    .replace(/ <em>/g, '<em>')
+    .replace(/<\/em> /g, '</em>')
+    .replace(/ <u>/g, '<u>')
+    .replace(/<\/u> /g, '</u>');
+  ele.innerHTML = html;
+}
+
 /**
  * Decorates all sections in a container element.
  * @param {Element} main The container element
  */
 export function decorateSections(main) {
   main.querySelectorAll(':scope > div').forEach((section) => {
+    deleteSpace(section);
     const wrappers = [];
     let defaultContent = false;
+    const firstChild = section.children[0];
+    let firstValue = '';
+    if (firstChild && firstChild.innerHTML) {
+      firstValue = firstChild.innerHTML;
+      if (firstValue.startsWith('.')) {
+        section.classList.add(toClassName(firstValue));
+        firstChild.remove();
+      }
+    }
     [...section.children].forEach((e) => {
       if (e.tagName === 'DIV' || !defaultContent) {
         const wrapper = document.createElement('div');
         wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
-        if (defaultContent) wrapper.classList.add('default-content-wrapper');
+        if (defaultContent) {
+          wrapper.classList.add('default-content-wrapper');
+          if (e.querySelector('a')) {
+            e.querySelectorAll('a').forEach((a) => {
+              a.setAttribute('sc:linkname', `${window.metaTitle}|navigation|${a.innerText}`);
+            });
+          }
+        }
       }
       wrappers[wrappers.length - 1].append(e);
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
     section.classList.add('section');
     section.dataset.sectionStatus = 'initialized';
-    section.style.display = 'none';
 
     /* process section metadata */
     const sectionMeta = section.querySelector('div.section-metadata');
@@ -372,8 +385,14 @@ export function updateSectionsStatus(main) {
         section.dataset.sectionStatus = 'loading';
         break;
       } else {
+        if (section.classList.contains('expose-banner-container')) {
+          const expose = document.createElement('div');
+          expose.className = 'expose-content-wrapper';
+          expose.innerHTML = section.innerHTML;
+          section.textContent = '';
+          section.append(expose);
+        }
         section.dataset.sectionStatus = 'loaded';
-        section.style.display = null;
       }
     }
   }
@@ -430,7 +449,9 @@ export async function loadBlock(block) {
     block.dataset.blockStatus = 'loading';
     const { blockName } = block.dataset;
     try {
-      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`);
+      const cssLoaded = new Promise((resolve) => {
+        loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`, resolve);
+      });
       const decorationComplete = new Promise((resolve) => {
         (async () => {
           try {
@@ -466,6 +487,17 @@ export async function loadBlocks(main) {
     await loadBlock(blocks[i]);
     updateSectionsStatus(main);
   }
+}
+
+/**
+ * Setup block utils.
+ * loads a block named 'popup' into footer
+ */
+export async function loadPopup(popup) {
+  const popupBlock = buildBlock('popup', '');
+  popup.append(popupBlock);
+  decorateBlock(popupBlock);
+  return loadBlock(popupBlock);
 }
 
 /**
@@ -506,6 +538,32 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
       img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
     }
   });
+
+  return picture;
+}
+
+/**
+ * Returns a picture element
+ * @param {string} pc The pc image URL
+ * @param {string} sp The mobile image URL
+ * @param {string} [alt] The image alternative text
+ * @returns {Element} The picture element
+ */
+export function createResponsivePicture(pc, sp, alt) {
+  const url = window.location.href;
+  const src = (new URL(pc, url)).pathname;
+  const picture = document.createElement('picture');
+  const pcSource = document.createElement('source');
+  pcSource.setAttribute('media', '(min-width: 768px)');
+  pcSource.setAttribute('srcset', src);
+  picture.appendChild(pcSource);
+  const spSource = document.createElement('source');
+  spSource.setAttribute('srcset', (new URL(sp, url)).pathname);
+  picture.appendChild(spSource);
+  const img = document.createElement('img');
+  img.setAttribute('alt', alt);
+  picture.appendChild(img);
+  img.setAttribute('src', src);
 
   return picture;
 }
@@ -565,17 +623,17 @@ export function decorateButtons(element) {
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
-          a.className = 'button primary'; // default
+          a.className = 'button button-primary'; // default
           up.classList.add('button-container');
         }
         if (up.childNodes.length === 1 && up.tagName === 'STRONG'
           && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
-          a.className = 'button primary';
+          a.className = 'button button-primary';
           twoup.classList.add('button-container');
         }
         if (up.childNodes.length === 1 && up.tagName === 'EM'
           && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
-          a.className = 'button secondary';
+          a.className = 'button button-secondary';
           twoup.classList.add('button-container');
         }
       }
@@ -633,8 +691,8 @@ export function loadFooter(footer) {
  */
 export function setup() {
   window.hlx = window.hlx || {};
-  window.hlx.RUM_MASK_URL = 'full';
   window.hlx.codeBasePath = '';
+  window.hlx.cmsBasePath = '/cms';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
   const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
@@ -648,10 +706,25 @@ export function setup() {
   }
 }
 
+function pfSectionScroll(sectionName) {
+  const dataLayer = [];
+  dataLayer.push({
+    event: 'pfSectionScroll',
+    pfSectionScroll: {
+      sectionName,
+    },
+  });
+  const event = new CustomEvent('pfAnalytics', {
+    detail: dataLayer,
+  });
+  document.querySelector('body').dispatchEvent(event);
+}
+
 /**
  * Auto initializiation.
  */
 function init() {
+  document.body.style.display = 'none';
   setup();
   sampleRUM('top');
 
@@ -663,6 +736,43 @@ function init() {
 
   window.addEventListener('error', (event) => {
     sampleRUM('error', { source: event.filename, target: event.lineno });
+  });
+
+  let twentyFive = !1;
+  let fifty = !1;
+  let seventyFive = !1;
+  let hundred = !1;
+  window.addEventListener('scroll', () => {
+    const [scrollTop, docHeight, winHeight] = [
+      document.documentElement.scrollTop,
+      document.documentElement.offsetHeight,
+      window.innerHeight,
+    ];
+    if (document.querySelector('.go-top')) {
+      if (document.body.scrollTop > winHeight || scrollTop > winHeight) {
+        document.querySelector('.go-top').classList.add('in');
+      } else {
+        document.querySelector('.go-top').classList.remove('in');
+      }
+    }
+    const scrollPercent = (scrollTop) / (docHeight - winHeight);
+    const scrollPercentRounded = Math.round(scrollPercent * 100);
+    if ((scrollPercentRounded >= 25 && scrollPercentRounded < 50) && !twentyFive) {
+      pfSectionScroll('25% scrolled');
+      twentyFive = !0;
+    }
+    if ((scrollPercentRounded >= 50 && scrollPercentRounded < 75) && !fifty) {
+      pfSectionScroll('50% scrolled');
+      fifty = !0;
+    }
+    if ((scrollPercentRounded >= 75 && scrollPercentRounded < 100) && !seventyFive) {
+      pfSectionScroll('75% scrolled');
+      seventyFive = !0;
+    }
+    if ((scrollPercentRounded >= 100) && !hundred) {
+      pfSectionScroll('100% scrolled');
+      hundred = !0;
+    }
   });
 }
 

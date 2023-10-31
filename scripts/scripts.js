@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  buildBlock,
   loadHeader,
   loadFooter,
   decorateButtons,
@@ -11,49 +10,13 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  toClassName,
+  loadPopup,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
-
-/**
- * Builds hero block and prepends to main in a new section.
- * @param {Element} main The container element
- */
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
-}
-
-/**
- * load fonts.css and set a session storage flag
- */
-async function loadFonts() {
-  await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-  try {
-    if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
-  } catch (e) {
-    // do nothing
-  }
-}
-
-/**
- * Builds all synthetic blocks in a container element.
- * @param {Element} main The container element
- */
-function buildAutoBlocks(main) {
-  try {
-    buildHeroBlock(main);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Auto Blocking failed', error);
-  }
-}
+window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
+window.metaTitle = document.title.replace(' | RSV Uncovered', '');
 
 /**
  * Decorates the main element.
@@ -64,7 +27,6 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
 }
@@ -83,13 +45,27 @@ async function loadEager(doc) {
     await waitForLCP(LCP_BLOCKS);
   }
 
-  try {
-    /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
-    if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
-      loadFonts();
-    }
-  } catch (e) {
-    // do nothing
+  if (window.location.pathname === '/') {
+    document.body.classList.add('path-home');
+  } else {
+    document.body.classList.add(`path-${toClassName(window.location.pathname)}`);
+  }
+}
+
+/**
+ * Adds the favicon.
+ * @param {string} href The favicon URL
+ */
+export function addFavIcon(href) {
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/png';
+  link.href = href;
+  const existingLink = document.querySelector('head link[rel="icon"]');
+  if (existingLink) {
+    existingLink.parentElement.replaceChild(link, existingLink);
+  } else {
+    document.getElementsByTagName('head')[0].appendChild(link);
   }
 }
 
@@ -98,22 +74,50 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  loadHeader(doc.querySelector('header'));
+  loadFooter(doc.querySelector('footer'));
+
+  const popupDiv = document.createElement('div');
+  document.body.appendChild(popupDiv);
+  popupDiv.id = 'popup-wrapper';
+  loadPopup(doc.querySelector('#popup-wrapper'));
+
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
-  if (hash && element) element.scrollIntoView();
+  if (hash && element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  const goTop = doc.createElement('span');
+  goTop.className = 'go-top icon iconfont icon-up';
+  goTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
+  doc.body.append(goTop);
+
+  if (document.querySelector('a[href$=".pdf"]')) document.querySelector('a[href$=".pdf"]').setAttribute('target', '_blank');
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  loadFonts();
-
+  addFavIcon(`${window.hlx.codeBasePath}/imgs/favicon.png`);
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  // Load reviews logic
+  if (window.location.hostname.endsWith('.hlx.page')
+    || window.location.hostname.endsWith('.hlx.reviews')
+    || window.location.hostname.endsWith('.hlx.live')
+    || window.location.hostname.endsWith('.web.pfizer')) {
+    await import(`${window.hlx.cmsBasePath}/tools/sidekick/sidekick.js`);
+  }
 }
 
 /**
@@ -126,7 +130,20 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
-async function loadPage() {
+export async function loadPage() {
+  // handle 404 from document
+  if (window.errorCode === '404') {
+    const resp = await fetch('/global/404.plain.html');
+    if (resp.status === 200) {
+      const html = await resp.text();
+      const main = document.querySelector('main');
+      main.innerHTML = html;
+      const btn = main.querySelector('a');
+      btn.setAttribute('sc:linkname', `${window.metaTitle}|navigation|${btn.innerText}`);
+    }
+    document.querySelector('body').classList.add('path-error');
+  }
+
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();

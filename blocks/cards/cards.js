@@ -1,18 +1,25 @@
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { decorateIcons , isSvg, setSvg} from '../../scripts/lib-franklin.js';
 
 export default function decorate(block) {
-  /* change to ul, li */
-  const ul = document.createElement('ul');
+  decorateIcons(block);
+  const cols = [...block.children];
+  block.classList.add(`cards-${cols.length}-cols`);
+
   [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    li.innerHTML = row.innerHTML;
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
+    row.className = 'cards-row';
+    [...row.children].forEach((col) => {
+      const pic = col.querySelector('picture');
+      if (pic) {
+        col.className = 'cards-img';
+      } else {
+        const fileName = col.innerText;
+        if (block.classList.contains('cards-with-svg') && isSvg(fileName)) {
+          col.innerHTML = setSvg(fileName);
+          col.className = 'cards-img';
+        } else {
+          col.className = 'cards-text';
+        }
+      }
     });
-    ul.append(li);
   });
-  ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
-  block.textContent = '';
-  block.append(ul);
 }

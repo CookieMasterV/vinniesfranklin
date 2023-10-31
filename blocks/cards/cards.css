@@ -1,31 +1,257 @@
-.cards > ul {
-  list-style: none;
+.cards-wrapper .cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.ratio-data {
+  min-height: 660px;
+  max-width: 925px;
+  margin: 0 auto;
+}
+.ratio-data .cards-row {
+  flex: 1;
+  position: relative;
+}
+.cards-row .cards-text {
+  font-size: 24px;
+  text-align: center;
+}
+.cards-row .cards-text p {
+  line-height: 28px;
+}
+.ratio-data .cards-row .cards-text p:nth-of-type(2) {
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+.cards-row .cards-text p strong {
+  font-size: 130px;
+  line-height: 130px;
+  color: var(--primary-color);
+}
+.cards-row .cards-text p strong sub {
+  font-size: 26px;
+  line-height: 30px;
+}
+.ratio-data:first-child::after {
+  content: '';
+  position: absolute;
+  height: 400px;
+  border: 4px solid #F4364C;
+  opacity: 50%;
+}
+.cards-wrapper .cards-hero {
+  flex-direction: column;
+  max-width: 1084px;
+}
+.cards-hero .cards-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.cards-hero .cards-row > .cards-img {
+  flex: 0.6;
+}
+.cards-hero .cards-row > .cards-text {
+  text-align: left;
+}
+.cards-hero .cards-row .cards-text h4 {
+  font-size: 36px;
+  line-height: 65px;
+}
+.cards-hero .cards-row .cards-text {
+  padding-top: 28px;
+  font-size: 20px;
+  line-height: 28px;
+}
+.cards-hero .cards-row .cards-text p:not(:last-child) {
+  margin-bottom: 16px;
+}
+.cards-hero .cards-row img {
+  max-width: unset;
+}
+.cards-hero .button-container {
+  display: inline-block;
+  margin-top: 33px;
+}
+.cards-hero .button-container a {
+  line-height: 28px;
+  padding: 12px 44px;
+}
+.cards-hero .button-container a .icon {
+  width: 15px;
+}
+.cards-container.cards-bg-icon {
+  max-width: 1440px;
+  position: relative;
+}
+.cards-container.cards-bg-icon::before,
+.cards-container.cards-bg-icon::after {
+  content: '';
+  position: absolute;
+  overflow: hidden;
+}
+.cards-container.cards-bg-icon::before {
+  background: url("../../imgs/icon-bg-v2.svg") no-repeat;
+  width: 233px;
+  height: 409px;
+  top: 0;
+  right: 0;
+}
+.cards-container.cards-bg-icon::after {
+  background: url("../../imgs/iocn-bg-v3.svg") no-repeat bottom left;
+  width: 759px;
+  height: 573px;
+  bottom: 0;
+  left: 0;
+}
+.evaluate-banner-btn .cards-wrapper {
+  background-color: #efefef;
+}
+.cards-banner .cards-row {
+  max-width: 966px;
+  padding: 75px 82px 75px 78px;
+  background-color: var(--primary-color);
+}
+.cards-banner .cards-row {
+  max-width: 966px;
+  margin: 0 auto;
+  background-color: var(--primary-color);
+  display: unset;
+  margin-top: -103px;
+}
+.cards-wrapper .cards-banner .cards-row .cards-text {
+  font-size: 26px;
+  line-height: 30px;
+  color: #fff;
+  display: flex;
+  gap: 33px;
+  text-align: left;
+}
+.cards-wrapper .cards-banner {
+  background-color: #EFEFEF;
+}
+.cards-banner .cards-text h6 {
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 16px;
 }
-
-.cards > ul > li {
-  border: 1px solid var(--highlight-background-color);
-  background-color: var(--background-color)
+.cards-banner .cards-text a {
+  background-color: #fff;
+  font-size: 20px;
+  line-height: 28px;
+  padding: 12px 54px;
+  gap: 14px;
 }
-
-.cards .cards-card-body {
-  margin: 16px;
+/* causes atopic dermatitis (eczema) */
+.section.cards-complex {
+  max-width: 1440px;
+  display: flex;
+  gap: 86px;
+  padding: 100px 0 200px 139px;
 }
-
-.cards .cards-card-image {
-  line-height: 0;
-}
-
-.cards .cards-card-body > *:first-child {
+.cards-complex .cards-wrapper {
   margin-top: 0;
 }
-
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.cards-complex .cards-wrapper .cards-left {
+  max-width: 445px;
+  height: 100%;
+}
+.cards-complex .cards-wrapper .cards-left .cards-img {
+  display: flex;
+  flex-direction: column;
+}
+.cards-complex .cards-wrapper .cards-left h3 {
+  font-size: 60px;
+  line-height: 66px;
+  font-weight: normal;
+  margin-bottom: 143px;
+  margin-top: 73px;
+}
+.cards-complex .cards-wrapper .cards-right {
+  display: block;
+  max-width: 770px;
+}
+.cards-complex .cards-wrapper .cards-right .cards-row:first-child {
+  padding-top: 67px;
+  padding-bottom: 30px;
+}
+.cards-complex .cards-wrapper .cards-right .cards-row:not(:last-child) {
+  background-color: #E6F3F7;
+  padding-left: 59px;
+  padding-right: 89px;
+}
+.cards-complex .cards-wrapper .cards-right .cards-row:not(:last-child):not(:first-child) {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+}
+.cards-complex .cards-wrapper .cards-right .cards-row:not(:last-child):not(:first-child) .cards-text strong {
+  font-size: 26px;
+  line-height: 30px;
+  color: var(--primary-color);
+}
+.cards-complex .cards-wrapper .cards-right .cards-row:last-child ,
+.cards-complex .cards-wrapper .cards-right .cards-row:not(:last-child):not(:first-child) .cards-text {
+  font-size: 20px;
+  line-height: 28px;
+}
+.cards-complex .cards-wrapper .cards-right .cards-row:last-child {
+  margin-top: 74px;
+  max-width: 683px;
+}
+.cards-complex .cards-wrapper .cards-right .cards-text {
+  text-align: left;
+  font-size: 20px;
+  line-height: 28px;
+}
+@media (min-width: 768px) {
+  .cards-wrapper .cards-hero {
+    flex-direction: column;
+  }
+}
+@media (min-width: 992px) {
+  .ratio-data {
+    min-height: 860px;
+  }
+  .cards-row .cards-text {
+    font-size: 26px;
+  }
+  .cards-row .cards-text p {
+    line-height: 30px;
+  }
+  .cards-banner .cards-row {
+    max-width: 996px;
+    padding: 75px 82px 75px 78px;
+    border-radius: 10px ;
+  }
+}
+@media (min-width: 1025px) {
+  .cards-bg-icon {
+    padding: 150px 50px 245px;
+  }
+  .cards-hero .cards-row .cards-text h4 {
+    font-size: 45px;
+    line-height: 65px;
+  }
+  .cards-hero .cards-row .cards-text {
+    padding-top: 28px;
+    font-size: 20px;
+    line-height: 28px;
+    padding-left: 30px;
+  }
+  .cards-container.cards-bg-icon::after {
+    width: 809px;
+    height: 623px;
+  }
+  .cards-container.cards-bg-icon::before {
+    width: 283px;
+    height: 459px;
+  }
+}
+@media (min-width: 1280px) {
+  .cards-bg-icon {
+    padding: 200px 139px 295px;
+  }
+  .cards-hero .cards-row {
+    gap: 79px;
+  }
 }

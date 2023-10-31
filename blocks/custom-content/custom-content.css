@@ -1,0 +1,177 @@
+.custom-content-wrapper {
+  background-color: #fff;
+}
+.custom-content.bg-2 {
+  background: url("../../imgs/BG-mask.png") no-repeat center, #F3F3F3;
+}
+.custom-content.fixed-bg {
+  min-height: 860px;
+  height: 860px;
+}
+.custom-content .title h1 {
+  font-size: 60px;
+  line-height: 90px;
+  margin: 0;
+  text-align: center;
+}
+.custom-content > div {
+  max-width: 880px;
+}
+.custom-content .highlight p {
+  font-size: 26px;
+  color: var(--primary-color);
+  text-align: center;
+  line-height: 36px;
+}
+.custom-content .body {
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
+  margin-top: 24px;
+  letter-spacing: 1px;
+}
+.custom-content.evaluate-con {
+  min-height: 530px;
+  height: 530px;
+}
+.evaluate-con.bg-3 {
+  background: url("../../imgs/non-branded_KV-v2.png.png") no-repeat center;
+}
+.evaluate-con .title h4 {
+  font-size: 45px;
+  line-height: 65px;
+}
+.evaluate-con .body {
+  font-size: 20px;
+  list-style: 28px;
+}
+/* Symptoms of atopic dermatitis (eczema) */
+.custom-content.bg-2-2 {
+  background: url("../../imgs/symptoms-bg.png") no-repeat center;
+}
+.custom-content.symptoms-info {
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  flex-direction: row;
+  padding: 105px 122px 105px 121px;
+  font-weight: normal;
+}
+.custom-content.symptoms-info::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: -1;
+}
+.custom-content.symptoms-info .body {
+  margin-top: 0;
+}
+.custom-content.symptoms-info .body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 146px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 22px;
+}
+.custom-content.symptoms-info .body div > ul > li {
+  position: relative;
+}
+.custom-content.symptoms-info .body div > ul > li::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 66px;
+  height: 66px;
+  left: -14%;
+  top: -20px;
+  background: var(--symptoms-radial-gradient);
+}
+
+.custom-content.symptoms-info .body ul li ul li {
+  font-size: 16px;
+  line-height: 22px;
+}
+.custom-content.symptoms-info > div:last-child ul li::before {
+  left: -23%;
+}
+.custom-content.symptoms-info .title {
+  padding: 0 64px;
+}
+.custom-content.symptoms-info .title h3 {
+  font-size: 60px;
+  line-height: 66px;
+  margin-bottom: 31px;
+  font-weight: normal;
+}
+.custom-content.symptoms-info .title p {
+  font-size: 20px;
+  line-height: 28px;
+  color: #fff;
+}
+/* severity */
+.custom-content.severity-con {
+  min-height: 596px;
+  height: 596px;
+}
+.custom-content.severity-con.bg-2-3 {
+  background: url("../../imgs/severity-bg.png") no-repeat center;
+}
+.custom-content.severity-con .body div {
+  color: #fff;
+  font-size: 32px;
+  line-height: 38px;
+}
+/* signs-infection */
+.custom-content.signs-infection {
+  background-color: #efefef;
+  padding: 223px 237px;
+  padding-top: 171px;
+}
+.custom-content.signs-infection .title {
+  text-align: center;
+  font-weight: normal;
+  font-size: 45px;
+  line-height: 65px;
+}
+.custom-content.signs-infection .body {
+  text-align: left;
+  font-size: 20px;
+  line-height: 28px;
+}
+.custom-content.signs-infection .body ul,
+.custom-content.signs-infection .body p {
+  margin-bottom: 30px;
+}
+.custom-content.signs-infection .body ul {
+  margin-left: 15 px;
+}
+.custom-content.signs-infection .body ul li {
+  position: relative;
+}
+.custom-content.signs-infection .body ul li::before {
+  content: "\2022";
+  font-size: 19px;
+  margin-right: 10px;
+}
+.custom-content.signs-infection .body p {
+
+}
+@media (min-width: 992px) {
+
+  .custom-content .title h1 {
+    font-size: 90px;
+    line-height: 110px;
+  }
+  .custom-content .highlight p {
+    font-size: 30px;
+    line-height: 43px;
+  }
+  .custom-content .body {
+    font-size: 26px;
+    line-height: 30px;
+  }
+}

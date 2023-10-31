@@ -1,0 +1,115 @@
+.tabs-wrapper .tabs {
+  padding: 170px 139px 141px 139px;
+}
+.tabs .tabs-head {
+  text-align: center;
+}
+.tabs .tabs-head h4 {
+  font-size: 45px;
+  line-height: 65px;
+  margin-bottom: 32px;
+  font-weight: normal;
+}
+.tabs .tabs-head p {
+  font-size: 20px;
+  line-height: 28px;
+}
+.tabs .tabs-info {
+
+}
+.tabs .tabs-triggers {
+  display: flex ;
+  align-items: center;
+  justify-content: space-between;
+  gap: 173px;
+  padding-left: 98px;
+  padding-right: 94px;
+  margin-top: 58px;
+  margin-bottom: 60px;
+}
+.tabs .tabs-triggers .tabs-trigger {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: bold;
+  color: #686868;
+  opacity: 0.4;
+}
+.tabs .tabs-triggers .tabs-trigger.active {
+  color: var(--primary-color);
+  opacity: 1;
+  position: relative;
+}
+.tabs .tabs-triggers .tabs-trigger.active::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  left: -60px;
+  top: -30px;
+  width: 105px;
+  height: 105px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(156, 219, 217, 0.7) 0%, rgba(156, 219, 217, 0.14) 53.12%, rgba(255, 255, 255, 0) 100%);
+
+}
+.tabs .tabs-content {
+  display: none;
+}
+.tabs .tabs-contents {
+  max-width: 1162px;
+}
+.tabs .tabs-content {
+  background-color: #F0F8FA;
+  max-height: 372px;
+  padding: 67px 94px 67px 101px;
+}
+.tabs .tabs-content h6 {
+  font-size: 26px;
+  line-height: 30px;
+  color: var(--primary-color);
+  margin-bottom: 27px;
+}
+.tabs .tabs-contents .content-wrap .content-list-1 li:not(:first-child),
+.tabs .tabs-contents .content-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.tabs .tabs-contents .content-wrap .content-list-1 li:not(:first-child) {
+  align-items: center;
+  margin-bottom: 41px;
+}
+.tabs .tabs-contents .content-wrap {
+  gap: 90px;
+}
+.tabs .tabs-contents .content-wrap ul li:not(:first-child) {
+  gap: 18px;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 28px;
+  position: relative;
+}
+.tabs .tabs-contents .content-wrap .content-list-1 {
+  max-width: 304px;
+}
+.tabs .tabs-contents .content-wrap .content-list-2 {
+  max-width: 289px;
+}
+.tabs .tabs-contents .content-wrap .content-list-1 img {
+  max-width: 75px;
+  height: 70px;
+}
+.tabs .tabs-contents .content-wrap .content-list-2 li:not(:first-child)::before {
+  content: "\2022";
+  font-size: 20px;
+  margin-right: 10px;
+}
+.tabs .tabs-contents .content-wrap > p img,
+.tabs .tabs-contents .content-wrap > p {
+  height: 432px;
+  max-width: 174px;
+  position: relative;
+  flex: 1;
+}
+.tabs .tabs-contents .content-wrap > p img {
+  position: absolute;
+  top: -100px;
+}
