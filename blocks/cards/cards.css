@@ -52,13 +52,24 @@
 .cards-hero .cards-row > .cards-img {
   flex: 0.6;
 }
-.cards-hero .cards-row > .cards-text {
+.cards-hero .cards-row > .cards-img p:last-child {
+  display: none;
+}
+.cards-hero .cards-row .cards-text {
   text-align: left;
+  padding-top: 28px;
+  font-size: 20px;
+  line-height: 28px;
+  padding-left: 20px;
+  font-weight: normal;
 }
 .cards-hero .cards-row .cards-text h4 {
-  font-size: 36px;
+  font-size: 45px;
   line-height: 65px;
+  margin-bottom: 32px;
+  font-weight: normal;
 }
+
 .cards-hero .cards-row .cards-text {
   padding-top: 28px;
   font-size: 20px;
@@ -77,6 +88,7 @@
 .cards-hero .button-container a {
   line-height: 28px;
   padding: 12px 44px;
+  font-weight: bold ;
 }
 .cards-hero .button-container a .icon {
   width: 15px;
@@ -91,7 +103,7 @@
   position: absolute;
   overflow: hidden;
 }
-.cards-container.cards-bg-icon::before {
+/* .cards-container.cards-bg-icon::before {
   background: url("../../imgs/icon-bg-v2.svg") no-repeat;
   width: 233px;
   height: 409px;
@@ -104,7 +116,7 @@
   height: 573px;
   bottom: 0;
   left: 0;
-}
+} */
 .evaluate-banner-btn .cards-wrapper {
   background-color: #efefef;
 }
@@ -112,6 +124,7 @@
   max-width: 966px;
   padding: 75px 82px 75px 78px;
   background-color: var(--primary-color);
+  border-radius: 10px;
 }
 .cards-banner .cards-row {
   max-width: 966px;
@@ -140,6 +153,7 @@
   line-height: 28px;
   padding: 12px 54px;
   gap: 14px;
+  font-weight: bold;
 }
 /* causes atopic dermatitis (eczema) */
 .section.cards-complex {
@@ -203,40 +217,11 @@
   font-size: 20px;
   line-height: 28px;
 }
-@media (min-width: 768px) {
-  .cards-wrapper .cards-hero {
-    flex-direction: column;
-  }
-}
-@media (min-width: 992px) {
-  .ratio-data {
-    min-height: 860px;
-  }
-  .cards-row .cards-text {
-    font-size: 26px;
-  }
-  .cards-row .cards-text p {
-    line-height: 30px;
-  }
-  .cards-banner .cards-row {
-    max-width: 996px;
-    padding: 75px 82px 75px 78px;
-    border-radius: 10px ;
-  }
-}
+
+
 @media (min-width: 1025px) {
   .cards-bg-icon {
     padding: 150px 50px 245px;
-  }
-  .cards-hero .cards-row .cards-text h4 {
-    font-size: 45px;
-    line-height: 65px;
-  }
-  .cards-hero .cards-row .cards-text {
-    padding-top: 28px;
-    font-size: 20px;
-    line-height: 28px;
-    padding-left: 30px;
   }
   .cards-container.cards-bg-icon::after {
     width: 809px;
@@ -254,4 +239,96 @@
   .cards-hero .cards-row {
     gap: 79px;
   }
+
+}
+@media (max-width: 1100px) {
+  .cards-bg-icon {
+    padding: 59px 15px 59px 20px;
+  }
+  .cards-wrapper .cards-hero {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .cards-hero .cards-row:last-child {
+    flex-direction: column-reverse;
+  }
+  .cards-hero .cards-row > .cards-img p:last-child {
+    display: block;
+  }
+  .cards-hero .cards-row > .cards-img p:first-child {
+    display: none;
+  }
+  .cards-hero .cards-row {
+    gap: 0;
+    flex: .5;
+  }
+  .cards-hero .cards-row {
+    flex-direction: column;
+  }
+  .cards-hero .cards-row .cards-text h4 {
+    font-size: 32px;
+    line-height: 46px;
+    margin-bottom: 39px;
+    letter-spacing: 3px;
+  }
+  .cards-hero .cards-row:last-child .cards-text h4:first-child {
+    margin: 0;
+  }
+  .cards-hero .cards-row .cards-text p {
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 2px;
+  }
+  .cards-hero .cards-row .cards-text p:not(:last-child) {
+    margin-bottom: 32px;
+  }
+  .cards-hero .button-container {
+    margin-top: 20px;
+  }
+  .cards-hero .cards-row img {
+    width: 100%;
+  }
+  .cards-hero .cards-row .cards-text {
+    padding: 0;
+    padding-left: 25px;
+  }
+}
+@media (max-width: 992px) {
+  .cards-wrapper .cards-hero {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .ratio-data {
+    min-height: 550px;
+    position: relative;
+    background: url("../../imgs/gradient-l.png") no-repeat right bottom;
+  }
+  .cards-wrapper .cards.ratio-data {
+    flex-direction: column;
+    padding: 92px 0;
+  }
+  .ratio-data:first-child::after {
+    content: unset;
+  }
+  .ratio-data .cards-row .cards-text {
+    font-size: 18px;
+    line-height: 30px;
+  }
+  .ratio-data .cards-row:first-child {
+    margin-bottom: 79px;
+  }
+  .ratio-data .cards-row .cards-text p strong {
+    font-size: 80px;
+    line-height: 97px;
+  }
+  .ratio-data .cards-row .cards-text p:nth-of-type(2) {
+    margin: 10px 0;
+  }
+  /* cards-hero */
+  /* .cards-hero .cards-row {
+    flex-direction: column;
+  } */
+
 }

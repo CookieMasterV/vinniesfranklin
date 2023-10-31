@@ -5,33 +5,33 @@
   background: url("../../imgs/BG-mask.png") no-repeat center, #F3F3F3;
 }
 .custom-content.fixed-bg {
-  min-height: 860px;
+  /* min-height: 860px; */
   height: 860px;
 }
 .custom-content .title h1 {
-  font-size: 60px;
-  line-height: 90px;
+  font-size: 90px;
+  line-height: 110px;
   margin: 0;
   text-align: center;
+  font-weight: 500;
 }
 .custom-content > div {
   max-width: 880px;
 }
 .custom-content .highlight p {
-  font-size: 26px;
+  font-size: 30px;
   color: var(--primary-color);
   text-align: center;
-  line-height: 36px;
+  line-height: 43px;
 }
 .custom-content .body {
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 26px;
+  line-height: 30px;
   text-align: center;
   margin-top: 24px;
   letter-spacing: 1px;
 }
 .custom-content.evaluate-con {
-  min-height: 530px;
   height: 530px;
 }
 .evaluate-con.bg-3 {
@@ -40,10 +40,13 @@
 .evaluate-con .title h4 {
   font-size: 45px;
   line-height: 65px;
+  font-weight: normal;
+  letter-spacing: 2px;
 }
 .evaluate-con .body {
   font-size: 20px;
-  list-style: 28px;
+  line-height: 28px;
+  letter-spacing: 2px;
 }
 /* Symptoms of atopic dermatitis (eczema) */
 .custom-content.bg-2-2 {
@@ -114,7 +117,7 @@
 }
 /* severity */
 .custom-content.severity-con {
-  min-height: 596px;
+  /* min-height: 596px; */
   height: 596px;
 }
 .custom-content.severity-con.bg-2-3 {
@@ -160,18 +163,59 @@
 .custom-content.signs-infection .body p {
 
 }
-@media (min-width: 992px) {
-
+@media (max-width: 992px) {
+ .cards-wrapper .cards-banner .cards-row {
+    margin-top: -8px;
+    flex: 1;
+    padding: 43px 27px;
+  }
+  .custom-content.hero-cust {
+    padding: 0 136px;
+  }
+  .custom-content.evaluate-con {
+    height: 410px;
+  }
+  .evaluate-con .title h4 {
+    font-size: 32px;
+    line-height: 46px;
+    max-width: 244px;
+  }
+  .evaluate-con .body {
+    font-size: 16px;
+    line-height: 26px;
+    max-width: 244px;
+    margin-top: 0;
+  }
+  .cards-wrapper .cards-banner .cards-row .cards-text {
+    flex-direction: column;
+  }
+  .cards-banner .cards-text .button-container {
+    margin: 0 auto;
+  }
+  .cards-banner .cards-text .button-container a {
+    max-width: 172px;
+    height: 52px;
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
+@media (max-width: 768px) {
+  .custom-content.hero-cust {
+    height: 500px;
+  }
   .custom-content .title h1 {
-    font-size: 90px;
-    line-height: 110px;
+    font-size: 48px;
+    line-height: 60px;
   }
   .custom-content .highlight p {
-    font-size: 30px;
-    line-height: 43px;
+    font-size: 18px;
+    line-height: 26px;
+    margin-top: 20px;
   }
   .custom-content .body {
-    font-size: 26px;
+    font-size: 18px;
     line-height: 30px;
+    letter-spacing: 2px;
+    max-width: 270px;
   }
 }

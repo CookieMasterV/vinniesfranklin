@@ -33,7 +33,7 @@
 
   /* fonts */
   --body-font-family: 'Noto Sans TC', sans-serif;
-  --heading-font-family: var(--body-font-family);
+  --heading-font-family: 'Proxima Nova', sans-serif;
   --fixed-font-family: var(--body-font-family);
   --text-desc-family: 'Proxima Nova', sans-serif;
 
@@ -101,10 +101,11 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  overflow-x: hidden;
 }
 
 body.appear {
-  display: block;
+  display: unset;
   box-sizing: border-box;
 }
 

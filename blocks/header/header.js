@@ -113,6 +113,9 @@ export default async function decorate(block) {
     });
 
     const navSections = nav.querySelector('.nav-sections');
+    navSections.children[0].classList.add('nav-anchor');
+    navSections.children[1].classList.add('nav-pathlink');
+
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
         if (navSection.querySelector('ul'))

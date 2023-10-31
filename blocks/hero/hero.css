@@ -34,6 +34,9 @@
 }
 .hero-wrapper .hero-info h2 {
   font-size: 80px;
+  line-height: 97px;
+  font-style: italic;
+  font-family: 'Proxima Nova', sans-serif;
 }
 .hero-wrapper .hero-info div:first-child h2 {
   color: #fff;
@@ -81,4 +84,49 @@
   position: absolute;
   bottom: 30px;
   left: 145px;
+}
+
+@media (max-width: 1200px) {
+  .hero-wrapper .hero-info {
+    gap: 350px;
+  }
+}
+@media (max-width: 1025px) {
+  .hero-wrapper .hero-info {
+    gap: 300px;
+  }
+  .hero-wrapper .hero-info h2 {
+    font-size: 70px;
+  }
+}
+@media (max-width: 768px) {
+  .hero-wrapper .hero-logo {
+    position: absolute;
+    top: 0;
+    /* background: #bfa; */
+    padding-left: 20px;
+    padding-top: 13px;
+  }
+  .hero-wrapper .hero-info {
+    flex: 0.65;
+    gap: 200px;
+  }
+  .hero-wrapper .hero-logo img {
+    max-width: 98px;
+  }
+  .hero-wrapper .fixed-bg {
+    height: 450px;
+  }
+  .hero-wrapper .hero-info h2 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 575px) {
+  .hero-wrapper .fixed-bg {
+    height: 280px;
+  }
+  .hero-wrapper .hero-info h2 {
+    font-size: 18px;
+    line-height: 26px;
+  }
 }

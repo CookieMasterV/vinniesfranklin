@@ -55,3 +55,18 @@
   padding: 11px 46px;
   gap: 12px;
 }
+@media (max-width: 992px) {
+  .references-wrapper {
+    padding: 83px 20px;
+  }
+  .references-title {
+    font-size: 24px;
+  }
+  .references-content {
+    font-size: 16px;
+  }
+  .references-more a > div {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
