@@ -6,11 +6,7 @@ header {
 header .nav-wrapper {
   width: 100%;
 }
-header .nav-wrapper::after {
-  content: '';
-  display: inline-block;
-  clear: both;
-}
+
 header nav {
   box-sizing: border-box;
   align-items: center;
@@ -270,6 +266,11 @@ header nav .nav-tools {
   }
 }
 @media (max-width: 768px) {
+  header .nav-wrapper::after {
+    content: '';
+    display: inline-block;
+    clear: both;
+  }
   header nav {
     position: fixed;
     padding: 12px 20px;
