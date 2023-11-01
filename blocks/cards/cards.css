@@ -223,14 +223,14 @@
   .cards-bg-icon {
     padding: 150px 50px 245px;
   }
-  .cards-container.cards-bg-icon::after {
+  /* .cards-container.cards-bg-icon::after {
     width: 809px;
     height: 623px;
   }
   .cards-container.cards-bg-icon::before {
     width: 283px;
     height: 459px;
-  }
+  } */
 }
 @media (min-width: 1280px) {
   .cards-bg-icon {

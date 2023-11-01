@@ -101,11 +101,7 @@
 }
 @media (max-width: 768px) {
   .hero-wrapper .hero-logo {
-    position: absolute;
-    top: 0;
-    /* background: #bfa; */
-    padding-left: 20px;
-    padding-top: 13px;
+    display: none;
   }
   .hero-wrapper .hero-info {
     flex: 0.65;

@@ -6,6 +6,11 @@ header {
 header .nav-wrapper {
   width: 100%;
 }
+header .nav-wrapper::after {
+  content: '';
+  display: inline-block;
+  clear: both;
+}
 header nav {
   box-sizing: border-box;
   align-items: center;
@@ -189,6 +194,9 @@ header nav .nav-sections ul > li > ul {
 header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
+header nav .nav-tools {
+  display: none;
+}
 @media (min-width: 900px) {
   header nav .nav-sections {
     display: block;
@@ -263,10 +271,17 @@ header nav .nav-sections ul > li > ul > li {
 }
 @media (max-width: 768px) {
   header nav {
-    position: unset;
-    padding: 15px 20px;
+    position: fixed;
+    padding: 12px 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    background-color: #fff;
+    width: 100%;
+    z-index: 99;
+  }
+  header nav .nav-tools {
+    display: block;
   }
   header nav .nav-hamburger {
     position: unset;

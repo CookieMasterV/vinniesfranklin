@@ -202,6 +202,7 @@
 @media (max-width: 768px) {
   .custom-content.hero-cust {
     height: 500px;
+    padding: 0 20px;
   }
   .custom-content .title h1 {
     font-size: 48px;

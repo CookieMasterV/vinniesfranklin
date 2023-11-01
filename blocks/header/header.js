@@ -111,7 +111,9 @@ export default async function decorate(block) {
         section.classList.add(`nav-${c}`);
       }
     });
-
+    const toolLogo = nav.querySelector('.nav-tools');
+    toolLogo.innerHTML = '<img loading="lazy" alt="Logo" width="128" height="54" src="/imgs/logo-blue.svg">';
+    toolLogo.setAttribute('sc:linkname', `global header|navigation|${messages.home}`);
     const navSections = nav.querySelector('.nav-sections');
     navSections.children[0].classList.add('nav-anchor');
     navSections.children[1].classList.add('nav-pathlink');
