@@ -35,8 +35,6 @@
 .hero-wrapper .hero-info h2 {
   font-size: 80px;
   line-height: 97px;
-  font-style: italic;
-  font-family: 'Proxima Nova', sans-serif;
 }
 .hero-wrapper .hero-info div:first-child h2 {
   color: #fff;
@@ -67,14 +65,19 @@
   align-items: flex-start;
   padding: 0 135px;
 }
+.banner-text .hero-info > div {
+  flex: .5;
+}
 .banner-text .hero-info div:first-child {
   margin-top: 50px;
 }
 .banner-text .hero-info div:last-child {
   margin-top: 200px;
+  max-width: 472px;
+  letter-spacing: 2px;
 }
 .banner-text .hero-info div:last-child p:not(:last-child) {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .hero-wrapper .banner-text .hero-ref {
   font-size: 20px;
@@ -85,18 +88,37 @@
   bottom: 30px;
   left: 145px;
 }
-
-@media (max-width: 1200px) {
-  .hero-wrapper .hero-info {
-    gap: 350px;
+@media (max-width: 1280px) {
+  .banner-text .hero-info {
+    padding: 0 100px;
   }
 }
+@media (max-width: 1200px) {
+  .highlight-title  .hero-info {
+    gap: 350px;
+  }
+
+}
 @media (max-width: 1025px) {
-  .hero-wrapper .hero-info {
+  .highlight-title .hero-info {
     gap: 300px;
   }
-  .hero-wrapper .hero-info h2 {
+  .highlight-title .hero-info h2 {
     font-size: 70px;
+  }
+  .banner-text .hero-info {
+    padding: 0 20px;
+    gap: 60px;
+  }
+  .hero-wrapper .banner-text .hero-ref {
+    left: 27px;
+  }
+  .banner-text .hero-info div:first-child h2 {
+    font-size: 65px;
+    line-height: 75px;
+  }
+  .banner-text .hero-info div:last-child {
+    font-size: 18px;
   }
 }
 @media (max-width: 768px) {
@@ -110,18 +132,40 @@
   .hero-wrapper .hero-logo img {
     max-width: 98px;
   }
-  .hero-wrapper .fixed-bg {
+  .highlight-title .fixed-bg {
     height: 450px;
   }
-  .hero-wrapper .hero-info h2 {
+  .highlight-title .hero-info h2 {
     font-size: 40px;
+  }
+  .banner-text .hero-info {
+    padding: 50px 22px 35px 20px;
+    gap: 60px;
+    flex-direction: column;
+  }
+  .banner-text .hero-info div:first-child h2 {
+    font-size: 48px;
+    line-height: 60px;
+  }
+  .banner-text .hero-info div:last-child {
+    font-size: 16px;
+    line-height: 18px;
+    margin-top: 0;
+    max-width: unset;
+  }
+  .hero-wrapper .banner-text .hero-ref {
+    font-size: 16px;
+    max-width: 255px;
+  }
+  .hero-wrapper .fixed-bg.bg-2-1 {
+    min-height: 800px;
   }
 }
 @media (max-width: 575px) {
-  .hero-wrapper .fixed-bg {
+  .highlight-title .fixed-bg {
     height: 280px;
   }
-  .hero-wrapper .hero-info h2 {
+  .highlight-title .hero-info h2 {
     font-size: 18px;
     line-height: 26px;
   }

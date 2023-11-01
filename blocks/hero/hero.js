@@ -19,7 +19,6 @@ export default function decorate(block) {
   const languageRegex = /\/(en)\//;
   const regex = /^\/$/;
   const isMatch = regex.test(window.location.pathname);
-  console.log(isMatch);
   const match = currentURL.match(languageRegex);
   console.log(window.location.pathname);
   [...classes].forEach((c, i) => {

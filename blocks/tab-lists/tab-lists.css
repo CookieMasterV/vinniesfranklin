@@ -31,3 +31,68 @@
 .tab-lists ul li a:hover::before {
   margin-right: 0;
 }
+.tab-lists.active {
+  height: 207px;
+  transition: height 0.3s ease;
+}
+@media (max-width: 992px) {
+  .tab-lists-wrapper {
+    position: relative;
+  }
+  /* .tab-lists-wrapper::after {
+    content: '';
+    display: inline-block;
+    clear: both;
+  } */
+  .tab-lists {
+    padding: 31px 20px 36px;
+  }
+  .tab-lists ul {
+    align-items: flex-start;
+  }
+  .tab-lists ul:first-child {
+    flex-direction: column;
+    gap: 28px;
+    height: auto;
+  }
+  .tab-lists ul:first-child ul {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tab-lists ul:first-child ul li {
+    line-height: 18px;
+  }
+  .tab-lists ul li a::before {
+    margin-right: 35px;
+  }
+  .tab-lists ul li a {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .tab-lists ul:first-child ul li a::before {
+    border-color: #fcc3c9;
+  }
+
+  .tab-lists ul:first-child ul li a {
+    color: #fcc3c9;
+  }
+  .tab-lists ul:first-child > li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tab-lists ul:first-child > li::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url('../../icons/drop-down.svg') no-repeat center;
+    transition: all 0.3s ease;
+    transform: rotate(180deg);
+  }
+  .tab-lists.active ul:first-child > li::after {
+    transform: unset;
+  }
+}

@@ -271,6 +271,9 @@ header nav .nav-tools {
     display: inline-block;
     clear: both;
   }
+  header .nav-wrapper {
+    margin-bottom: 4%;
+  }
   header nav {
     position: fixed;
     padding: 12px 20px;

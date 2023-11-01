@@ -95,8 +95,9 @@
 }
 
 .custom-content.symptoms-info .body ul li ul li {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 22px;
+  font-weight: 500;
 }
 .custom-content.symptoms-info > div:last-child ul li::before {
   left: -23%;
@@ -109,6 +110,7 @@
   line-height: 66px;
   margin-bottom: 31px;
   font-weight: normal;
+  letter-spacing: 3px;
 }
 .custom-content.symptoms-info .title p {
   font-size: 20px;
@@ -198,6 +200,9 @@
     font-size: 16px;
     line-height: 28px;
   }
+  .custom-content.symptoms-info {
+    padding: 60px 20px;
+  }
 }
 @media (max-width: 768px) {
   .custom-content.hero-cust {
@@ -218,5 +223,33 @@
     line-height: 30px;
     letter-spacing: 2px;
     max-width: 270px;
+  }
+  .custom-content.symptoms-info {
+    flex-direction: column;
+  }
+  .custom-content.bg-2-2 {
+    height: auto;
+  }
+  .custom-content.symptoms-info .title {
+    padding: 0;
+  }
+  .custom-content.symptoms-info .title h3 {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 60px;
+    margin-bottom: 53px;
+  }
+  .custom-content.symptoms-info .title p {
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: 3px;
+  }
+  .custom-content.symptoms-info .body ul li ul li {
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700;
+  }
+  .custom-content.symptoms-info .body ul {
+    gap: 51px;
   }
 }
