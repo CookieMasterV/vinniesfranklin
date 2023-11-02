@@ -110,6 +110,5 @@
   flex: 1;
 }
 .tabs .tabs-contents .content-wrap > p img {
-  position: absolute;
   top: -100px;
 }
