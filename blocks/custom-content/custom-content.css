@@ -71,8 +71,9 @@
 }
 .custom-content.symptoms-info .body {
   margin-top: 0;
+  height: 100%;
 }
-.custom-content.symptoms-info .body:last-child ul:last-child {
+.custom-content.symptoms-info .body:last-child ul:first-child {
   height: 0;
   opacity: 0;
 }
@@ -133,6 +134,7 @@
   color: #fff;
   font-size: 32px;
   line-height: 38px;
+  letter-spacing: 2px;
 }
 /* signs-infection */
 .custom-content.signs-infection {
@@ -145,6 +147,10 @@
   font-weight: normal;
   font-size: 45px;
   line-height: 65px;
+  letter-spacing: 3px;
+}
+.custom-content.signs-infection .title h4 {
+  font-weight: 400;
 }
 .custom-content.signs-infection .body {
   text-align: left;
@@ -154,6 +160,7 @@
 .custom-content.signs-infection .body ul,
 .custom-content.signs-infection .body p {
   margin-bottom: 30px;
+  letter-spacing: 2px;
 }
 .custom-content.signs-infection .body ul {
   margin-left: 15px;
@@ -204,6 +211,33 @@
   }
   .custom-content.symptoms-info {
     padding: 60px 20px;
+  }
+  /* 15:56  modify */
+  .custom-content.severity-con .body div {
+    font-size: 24px;
+    line-height: 28px;
+    padding: 141px 20px 230px;
+  }
+  .path-symptoms .cards-banner .cards-row {
+    position: relative;
+    top: -120px;
+  }
+  /* modify */
+  .custom-content.signs-infection {
+    padding: 0px 20px 99px;
+  }
+  .custom-content.signs-infection .title {
+    font-size: 32px;
+    line-height: 46px;
+  }
+  .custom-content.signs-infection .title h4 {
+    margin-bottom: 50px;
+  }
+  .custom-content.signs-infection .body {
+    font-size: 16px;
+    line-height: 26px;
+    margin-top: 0;
+    max-width: unset;
   }
 }
 @media (max-width: 768px) {
@@ -258,12 +292,22 @@
   .custom-content.symptoms-info .body:first-child {
     display: none;
   }
-  .custom-content.symptoms-info .body:last-child ul:last-child {
+  .custom-content.symptoms-info .body:last-child ul:first-child {
     height: auto;
     opacity: 1;
     margin-top: 51px;
   }
+  .custom-content.symptoms-info .body:last-child ul:last-child {
+    margin-top: 51px;
+  }
   .custom-content.symptoms-info .body:last-child {
     margin-top: 36px;
+  }
+  .custom-content.bg-2-2 {
+    background-attachment: fixed ;
+  }
+  /* 16 modify */
+  .custom-content.severity-con .body {
+    max-width: unset;
   }
 }
