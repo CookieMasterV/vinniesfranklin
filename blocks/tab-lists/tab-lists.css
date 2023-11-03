@@ -33,8 +33,9 @@
 }
 .tab-lists.active {
   height: 207px;
-  transition: height 0.3s ease;
+  transition: all 0.3s ease;
 }
+
 @media (max-width: 992px) {
   .tab-lists-wrapper {
     position: relative;
@@ -90,5 +91,26 @@
   .tab-lists.active ul:first-child > li::after {
     transform: unset;
   }
-
+  .tab-lists.fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 6;
+  }
+  .tab-lists.fixed::after {
+    content: '';
+    display: inline-block;
+    clear: both;
+  }
+  .tab-lists ul:first-child ul {
+    opacity: 0;
+  }
+  .active.tab-lists ul:first-child ul {
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+  .tab-lists.fixed {
+    top: 85px;
+  }
 }
