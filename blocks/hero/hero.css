@@ -46,8 +46,10 @@
 /* homepage */
 .hero-wrapper .fixed-bg.bg-2-1 {
   background: url("../../imgs/BG-mask-v2.png") no-repeat center;
-  height: 780px;
+  min-height: 920px;
   position: relative;
+  background-attachment: fixed;
+  background-size: 100%  100% !important;
 }
 .banner-text .hero-info div:first-child h2 {
   font-size: 80px;
@@ -63,7 +65,7 @@
   gap: 100px;
   flex: 1;
   align-items: flex-start;
-  padding: 0 135px;
+  width: 80%;
 }
 .banner-text .hero-info > div {
   flex: .5;
@@ -87,11 +89,6 @@
   position: absolute;
   bottom: 30px;
   left: 145px;
-}
-@media (max-width: 1280px) {
-  .banner-text .hero-info {
-    padding: 0 100px;
-  }
 }
 @media (max-width: 1200px) {
   .highlight-title  .hero-info {

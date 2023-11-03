@@ -72,6 +72,10 @@
 .custom-content.symptoms-info .body {
   margin-top: 0;
 }
+.custom-content.symptoms-info .body:last-child ul:last-child {
+  height: 0;
+  opacity: 0;
+}
 .custom-content.symptoms-info .body ul {
   display: flex;
   flex-direction: column;
@@ -152,7 +156,7 @@
   margin-bottom: 30px;
 }
 .custom-content.signs-infection .body ul {
-  margin-left: 15 px;
+  margin-left: 15px;
 }
 .custom-content.signs-infection .body ul li {
   position: relative;
@@ -162,9 +166,7 @@
   font-size: 19px;
   margin-right: 10px;
 }
-.custom-content.signs-infection .body p {
 
-}
 @media (max-width: 992px) {
  .cards-wrapper .cards-banner .cards-row {
     margin-top: -8px;
@@ -243,6 +245,7 @@
     font-size: 16px;
     line-height: 18px;
     letter-spacing: 3px;
+    text-align: left;
   }
   .custom-content.symptoms-info .body ul li ul li {
     font-size: 16px;
@@ -251,5 +254,16 @@
   }
   .custom-content.symptoms-info .body ul {
     gap: 51px;
+  }
+  .custom-content.symptoms-info .body:first-child {
+    display: none;
+  }
+  .custom-content.symptoms-info .body:last-child ul:last-child {
+    height: auto;
+    opacity: 1;
+    margin-top: 51px;
+  }
+  .custom-content.symptoms-info .body:last-child {
+    margin-top: 36px;
   }
 }
