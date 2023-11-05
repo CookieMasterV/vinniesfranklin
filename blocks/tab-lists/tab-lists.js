@@ -7,23 +7,27 @@ export default function decorate(block) {
     const firstUlItems = firstUl.querySelectorAll('li');
     firstUl.appendChild(secondUl);
     firstUlItems.forEach((li) => {
-      li.addEventListener('click', () => {
-        block.classList.toggle('active');
-      });
+        li.addEventListener('click', () => {
+          if(window.innerWidth < 992) {
+            block.classList.toggle('active');
+          }
+        });
     });
   }
   const originalFirstUlContent = Array.from(firstUlItems).map(li => li.children[0]);
-  console.log(originalFirstUlContent[0].getAttribute('title'));
   tabLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const clickedText = link.textContent;
-      const clickedLink = link;
-      const oricon = originalFirstUlContent[0].innerHTML;
-      firstUlItems[0].querySelector('a').innerHTML = clickedText;
-      originalFirstUlContent[0].innerHTML = link.innerHTML;
-      originalFirstUlContent[0].innerHTML = firstUlItems[0].querySelector('a').innerHTML;
-      clickedLink.innerHTML = oricon;
+      if(window.innerWidth < 992) {
+        event.preventDefault();
+        block.classList.toggle('active');
+        const clickedText = link.textContent;
+        const clickedLink = link;
+        const oricon = originalFirstUlContent[0].innerHTML;
+        firstUlItems[0].querySelector('a').innerHTML = clickedText;
+        originalFirstUlContent[0].innerHTML = link.innerHTML;
+        originalFirstUlContent[0].innerHTML = firstUlItems[0].querySelector('a').innerHTML;
+        clickedLink.innerHTML = oricon;
+      }
     });
   });
 
@@ -44,3 +48,4 @@ export default function decorate(block) {
   }
 
 }
+

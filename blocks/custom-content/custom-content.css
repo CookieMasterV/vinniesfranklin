@@ -1,8 +1,17 @@
 .custom-content-wrapper {
   background-color: #fff;
 }
+/* .fixed-icon .custom-content-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: url("../../imgs/bg-maskV1.svg") no-repeat center;
+} */
 .custom-content.bg-2 {
-  background: url("../../imgs/BG-mask.png") no-repeat center, #F3F3F3;
+  background:
+  url("../../imgs/bg-maskV1.svg") no-repeat center,
+  url("../../imgs/fixed-icon.png") no-repeat top left,
+   #F3F3F3;
+
 }
 .custom-content.fixed-bg {
   /* min-height: 860px; */
