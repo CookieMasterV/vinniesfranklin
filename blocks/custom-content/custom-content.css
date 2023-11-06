@@ -1,17 +1,15 @@
 .custom-content-wrapper {
   background-color: #fff;
 }
-/* .fixed-icon .custom-content-wrapper {
+.fixed-icon .custom-content-wrapper {
   max-width: 1440px;
   margin: 0 auto;
-  background: url("../../imgs/bg-maskV1.svg") no-repeat center;
-} */
+  background: url("../../imgs/fixed-icon.png") no-repeat center;
+}
 .custom-content.bg-2 {
   background:
   url("../../imgs/bg-maskV1.svg") no-repeat center,
-  url("../../imgs/fixed-icon.png") no-repeat top left,
    #F3F3F3;
-
 }
 .custom-content.fixed-bg {
   /* min-height: 860px; */
@@ -247,6 +245,12 @@
     line-height: 26px;
     margin-top: 0;
     max-width: unset;
+  }
+  /* severity--bg--mb */
+  .custom-content.severity-con.bg-2-3 {
+    background: url("../../imgs/severity-bg-mb.png") no-repeat center;
+    min-height: 695px;
+    height: unset;
   }
 }
 @media (max-width: 768px) {
