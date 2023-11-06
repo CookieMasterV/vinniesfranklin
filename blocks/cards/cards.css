@@ -276,6 +276,22 @@
   width: 100%;
   object-fit: cover;
 }
+/* more-info */
+.cards-wrapper .more-info-assessment {
+  flex-direction: column;
+  padding-top: 156px;
+  padding-bottom: 73px;
+  font-size: 26px;
+  line-height: 30px;
+}
+.cards-wrapper .more-info-assessment .cards-row h6 {
+  font-weight: 400;
+}
+.cards-wrapper .more-info-assessment .cards-img {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
 @media (min-width: 1025px) {
   .cards-bg-icon {
     padding: 150px 50px 245px;
@@ -477,6 +493,10 @@
 }
 @media (max-width: 992px) {
   .assessment-questions .default-content-wrapper {
+    padding: 76px 20px;
+  }
+
+  .cards-wrapper .more-info-assessment {
     padding: 76px 20px;
   }
 }
