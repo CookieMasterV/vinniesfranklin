@@ -352,7 +352,7 @@
     max-height: unset;
   }
   .cards-symptoms .cards-row:first-child .cards-img img {
-    margin-bottom: -15px;
+    margin-bottom: -16px;
   }
   /* 16 modify */
   .path-symptoms .evaluate-banner-btn .cards-wrapper {
@@ -456,4 +456,27 @@
     flex-direction: column;
   } */
 
+}
+
+
+/* assessment */
+.black-bg .cards-row:last-child {
+  background-color: #333132;
+  /* margin-top: -1px; */
+}
+.assessment-questions .default-content-wrapper {
+  font-size: 20px;
+  line-height: 28px;
+  padding: 120px 216px;
+}
+.assessment-questions .default-content-wrapper p:first-child {
+  margin-bottom: 30px;
+}
+.assessment-questions .default-content-wrapper p {
+  text-align: center;
+}
+@media (max-width: 992px) {
+  .assessment-questions .default-content-wrapper {
+    padding: 76px 20px;
+  }
 }

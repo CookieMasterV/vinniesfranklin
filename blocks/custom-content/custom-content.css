@@ -180,7 +180,23 @@
   font-size: 19px;
   margin-right: 10px;
 }
-
+/* self-assessment */
+.hero-wrapper .fixed-bg.bg-3-1 {
+  background: url("../../imgs/assessment-hero-bg.png") no-repeat center;
+  min-height: 780px;
+  background-size: 100% 114% !important;
+  position: relative;
+}
+.assessment-hero .hero-info {
+  flex-direction: column;
+  gap: 109px;
+  flex: unset;
+}
+.assessment-hero .hero-info div:last-child {
+  margin-top: 0;
+  margin-bottom: 111px;
+  max-width: 937px;
+}
 @media (max-width: 992px) {
  .cards-wrapper .cards-banner .cards-row {
     margin-top: -8px;
@@ -322,5 +338,23 @@
   /* 16 modify */
   .custom-content.severity-con .body {
     max-width: unset;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-wrapper .fixed-bg.bg-3-1 {
+    height: 100vh;
+  }
+}
+@media (max-width: 992px) {
+  .assessment-hero .hero-info {
+    gap: 78px;
+  }
+}
+@media (max-width: 768px) {
+  .hero-wrapper .fixed-bg.bg-3-1 {
+    min-height: unset;
+    height: unset;
+    background-size: cover !important;
   }
 }

@@ -1,4 +1,7 @@
+import { decorateIcons} from '../../scripts/lib-franklin.js';
+
 export default function decorate(block) {
+  decorateIcons(block);
   const firstUl = block.querySelector('.tab-lists ul:first-child');
   const secondUl = block.querySelector('.tab-lists ul:nth-child(2)');
   const tabLinks = document.querySelectorAll('.tab-lists li a');
