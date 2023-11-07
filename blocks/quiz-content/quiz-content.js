@@ -5,12 +5,16 @@ export default function decorate(block) {
   const classes = ['score', 'caption', 'score-list','remark'];
   [...classes].forEach((c, i) => {
     const section = block.children[i];
-    const scoreWrapper = block.querySelector('.quiz-conent-score > div');
     if (section) {
       section.classList.add(`quiz-conent-${c}`);
-      if(section == 1) {
-        console.log(111);
-        console.log(scoreWrapper.children[2]);
+      if (i == 0) {
+        const scoreWrapper = block.querySelector('.quiz-conent-score > div');
+        scoreWrapper.children[2].classList.add('your-score');
+      }
+      if(i == 2) {
+        const scoreListWrap = block.querySelector('.quiz-conent-score-list > div');
+        scoreListWrap.children[0].classList.add ("scorewrap");
+
       }
     }
   });

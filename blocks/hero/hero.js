@@ -20,7 +20,6 @@ export default function decorate(block) {
   const regex = /^\/$/;
   const isMatch = regex.test(window.location.pathname);
   const match = currentURL.match(languageRegex);
-  console.log(window.location.pathname);
   [...classes].forEach((c, i) => {
     const section = block.children[i];
     if (section) {
