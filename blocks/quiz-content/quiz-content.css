@@ -62,8 +62,7 @@
   height: 182px;
 }
 .quiz-conent-score-list .scorewrap > li {
-  display: flex;
-  flex-direction: column;
+  padding-top: 49px;
 }
 .quiz-conent-score-list .scorewrap > li > * {
   flex: 1;
@@ -76,7 +75,10 @@
   width: 194px;
   height: 200px;
   top: -12px;
-  left: 0;
+  left: -28px;
+}
+.quiz-conent-score-list .scorewrap > li.active {
+  color: var(--primary-color);
 }
 .quiz-conent-score-list .scorewrap > li > ul {
   font-weight: 500;

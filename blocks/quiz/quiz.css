@@ -1,3 +1,79 @@
-.quiz-wrapper {
+.quiz-questions {
   background-color: #e6f3f7;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 127px;
+  padding-bottom: 113px;
+}
+#quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#quiz .quiz-row {
+  max-width: 768px;
+  width: 768px;
+}
+#quiz h6 {
+  text-align: center;
+}
+#quiz .range-slider {
+  width: 100%;
+  appearance: none;
+  height: 8px;
+	-webkit-appearance: none;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+}
+#quiz .range-slider::-webkit-slider-thumb {
+  appearance: none;
+	-webkit-appearance: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+ background: url('../../icons/range-thumb.svg') no-repeat center;
+}
+
+.range-slider__value {
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  width: 61px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  border-radius: 6px;
+  background-color: #333132;
+  display: inline-block;
+  color: #fff;
+  position: relative;
+}
+.range-slider__value::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 9px;
+  top: -8px;
+  left: 25px;
+  background: url("../../icons/singe.svg") no-repeat center;
+}
+.quiz-questions > .quiz-row {
+  text-align: center;
+}
+.quiz-questions > .quiz-row > div {
+  display: inline-block;
+  padding: 12px 70px 12px 70px;
+  background-color: var(--secondary-color);
+  border-radius: 60px;
+  color: #fff;
+  letter-spacing: 3px;
+  box-shadow: 2px 2px 15px 0px #0000004d;
+}
+.quiz-questions > .quiz-row h6 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }

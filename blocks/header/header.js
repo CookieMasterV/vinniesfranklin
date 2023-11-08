@@ -139,7 +139,7 @@ export default async function decorate(block) {
     hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
     nav.append(hamburger);
     nav.setAttribute('aria-expanded', 'false');
-    window.addEventListener('change', () => toggleMenu(nav, navSections));
+    nav.addEventListener('change', () => toggleMenu(nav, navSections));
     decorateIcons(nav);
     const navWrapper = document.createElement('div');
     navWrapper.classList.add('nav-wrapper');
