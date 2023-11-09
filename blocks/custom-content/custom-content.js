@@ -17,5 +17,21 @@ export default function decorate(block) {
     }
   });
 
+  window.addEventListener("scroll", fun);
+  function fun() {
+    let dom = document.querySelector(".path-self-assessment")
+    if(dom) {
+      let rect = dom.getBoundingClientRect();
+      let topclassBox = document.querySelector(".quiz-head")
+      if (rect.top < -900) {
+        topclassBox.classList.add('fixed');
+        topclassBox.style.top = 0;
+      }
+      if (rect.top > -900) {
+        topclassBox.classList.remove('fixed');
+        topclassBox.style.top = 0;
+      }
+    }
+  }
 }
 

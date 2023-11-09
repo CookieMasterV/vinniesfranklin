@@ -1,5 +1,4 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-// import { scoreSubmittedEvent } from '../../blocks/quiz-content/quiz-content';
 export default function decorate(block) {
   decorateIcons(block);
   [...block.children].forEach((row) => {
@@ -46,17 +45,9 @@ export default function decorate(block) {
   submitbtn.addEventListener('click', () => {
     const lastValues = Array.from(inputrange).map(input => parseInt(input.value));
     const totalScore = lastValues.reduce((sum, value) => sum + value, 0);
-    console.log('Total Score: ' + totalScore);
     const scoreSubmittedEvent = new CustomEvent('scoreSubmitted', { detail: { totalScore } });
     document.dispatchEvent(scoreSubmittedEvent);
   });
-
-  // submitbtn.addEventListener('click', () => {
-  //   const lastValues = Array.from(inputrange).map(input => parseInt(input.value));
-  //   const totalScore = lastValues.reduce((sum, value) => sum + value, 0);
-  //   console.log('Total Score: ' + totalScore);
-  //   block.dispatchEvent(scoreSubmittedEvent(totalScore));
-  // });
   function updateContent(value, i) {
     const currentURL = window.location.href;
     const languageRegex = /\/(en)\//;

@@ -217,6 +217,18 @@
 .custom-content.quiz-head .title h3 {
   font-weight: 400;
 }
+.assessment-quiz .custom-content-wrapper::before {
+  content: '';
+  display: inline-block;
+  clear: both;
+}
+.assessment-quiz .fixed {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  background-color: #fff;
+}
 @media (max-width: 992px) {
   .cards-wrapper .cards-banner .cards-row {
     margin-top: -8px;
@@ -300,18 +312,13 @@
     width: 100%;
     max-width: unset;
   }
-  .custom-content.quiz-head .title {
-    font-size: 40px;
-    line-height: 58px;
-  }
-
   /* quiz-head */
   .custom-content.quiz-head .title h3 {
     font-size: 40px;
     line-height: 58px;
     margin-bottom: 0;
-
   }
+
 }
 @media (max-width: 768px) {
   .custom-content.hero-cust {
