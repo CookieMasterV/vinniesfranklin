@@ -18,7 +18,7 @@ export default function decorate(block) {
     }
   });
 
-  const totalScore = 14;
+  const totalScore = 5;
   const showScore = document.querySelector('.your-score');
   showScore.textContent = totalScore;
   const scores = document.querySelectorAll('.scorewrap li');
@@ -36,9 +36,9 @@ export default function decorate(block) {
   }
   const linkscore = document.querySelector('.button-container a');
   if (totalScore >= 3 && totalScore <= 16) {
-    linkscore.href = 'https://care4skincomhk-dev.web.pfizer/#如果屬-輕度至中度-的異位性皮膚炎';
+    linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment/#如果屬-輕度至中度-的異位性皮膚炎';
   } else if (totalScore >= 17 && totalScore <= 28) {
-    linkscore.href = 'https://care4skincomhk-dev.web.pfizer/#如果屬-中度至嚴重-的異位性皮膚炎';
+    linkscore.href = 'https://care4skincomhk-dev.web.pfizer//treatment/#如果屬-中度至嚴重-的異位性皮膚炎';
   }
 }
 

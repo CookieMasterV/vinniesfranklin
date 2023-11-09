@@ -30,7 +30,6 @@ export default function decorate(block) {
   submitbtn.id = 'score-submit';
   const inputrange = document.querySelectorAll('.range-slider');
   const showvalue = document.querySelectorAll('.range-slider__value');
-
   let totalScore = 0;
   inputrange.forEach((input, i) => {
     input.addEventListener('input', (event) => {
@@ -39,13 +38,11 @@ export default function decorate(block) {
       const languageRegex = /\/(en)\//;
       const match = currentURL.match(languageRegex);
       let content = '';
-      const newPosition = (value / (inputrange.max - inputrange.min)) * 100 + '%';
-      console.log(newPosition);
-      showvalue[i].style.left = newPosition;
-      const percentageValue = ((value) / (inputrange.max - inputrange.min)) * 100;
-      inputrange.style.background = `linear-gradient(to right, #0683ad 0%, #0683ad ${percentageValue}%, #fff 0%, #fff 100%)`;
+      const percentageValue = ((value) / (input.max - input.min)) * 100;
+      input.style.background = `linear-gradient(to right, #0683ad 0%, #0683ad ${percentageValue}%, #fff 0%, #fff 100%)`;
       totalScore += value;
-
+      const newPosition = `calc(${percentageValue}% - 10px)`;
+      showvalue[i].style.left = newPosition;
       if (match) {
         switch (value) {
           case 0:
@@ -89,5 +86,4 @@ export default function decorate(block) {
   submitbtn.addEventListener('click', () => {
     console.log('Total Score: ' + totalScore);
   });
-
 }
