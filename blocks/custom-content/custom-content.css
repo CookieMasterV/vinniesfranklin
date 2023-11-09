@@ -4,12 +4,10 @@
 .fixed-icon .custom-content-wrapper {
   max-width: 1440px;
   margin: 0 auto;
-  background: url("../../imgs/fixed-icon.png") no-repeat center;
+  background: url('../../imgs/fixed-icon.png') no-repeat center;
 }
 .custom-content.bg-2 {
-  background:
-  url("../../imgs/bg-maskV1.svg") no-repeat center,
-   #F3F3F3;
+  background: url('../../imgs/bg-maskV1.svg') no-repeat center, #f3f3f3;
 }
 .custom-content.fixed-bg {
   /* min-height: 860px; */
@@ -42,7 +40,7 @@
   height: 530px;
 }
 .evaluate-con.bg-3 {
-  background: url("../../imgs/non-branded_KV-v2.png.png") no-repeat center;
+  background: url('../../imgs/non-branded_KV-v2.png.png') no-repeat center;
 }
 .evaluate-con .title h4 {
   font-size: 45px;
@@ -57,7 +55,7 @@
 }
 /* Symptoms of atopic dermatitis (eczema) */
 .custom-content.bg-2-2 {
-  background: url("../../imgs/symptoms-bg.png") no-repeat center;
+  background: url('../../imgs/symptoms-bg.png') no-repeat center;
 }
 .custom-content.symptoms-info {
   color: #fff;
@@ -135,7 +133,7 @@
   height: 596px;
 }
 .custom-content.severity-con.bg-2-3 {
-  background: url("../../imgs/severity-bg.png") no-repeat center;
+  background: url('../../imgs/severity-bg.png') no-repeat center;
 }
 .custom-content.severity-con .body div {
   color: #fff;
@@ -176,13 +174,13 @@
   position: relative;
 }
 .custom-content.signs-infection .body ul li::before {
-  content: "\2022";
+  content: '\2022';
   font-size: 19px;
   margin-right: 10px;
 }
 /* self-assessment */
 .hero-wrapper .fixed-bg.bg-3-1 {
-  background: url("../../imgs/assessment-hero-bg.png") no-repeat center;
+  background: url('../../imgs/assessment-hero-bg.png') no-repeat center;
   min-height: 780px;
   background-size: 100% 114% !important;
   position: relative;
@@ -220,7 +218,7 @@
   font-weight: 400;
 }
 @media (max-width: 992px) {
- .cards-wrapper .cards-banner .cards-row {
+  .cards-wrapper .cards-banner .cards-row {
     margin-top: -8px;
     flex: 1;
     padding: 43px 27px;
@@ -286,7 +284,7 @@
   }
   /* severity--bg--mb */
   .custom-content.severity-con.bg-2-3 {
-    background: url("../../imgs/severity-bg-mb.png") no-repeat center;
+    background: url('../../imgs/severity-bg-mb.png') no-repeat center;
     min-height: 695px;
     height: unset;
   }
@@ -296,7 +294,7 @@
     padding: 60px 20px;
     gap: 22px;
   }
-  .custom-content.quiz-head .title ,
+  .custom-content.quiz-head .title,
   .custom-content.quiz-head .body {
     text-align: left;
     width: 100%;
@@ -307,6 +305,13 @@
     line-height: 58px;
   }
 
+  /* quiz-head */
+  .custom-content.quiz-head .title h3 {
+    font-size: 40px;
+    line-height: 58px;
+    margin-bottom: 0;
+
+  }
 }
 @media (max-width: 768px) {
   .custom-content.hero-cust {
@@ -372,7 +377,7 @@
     margin-top: 36px;
   }
   .custom-content.bg-2-2 {
-    background-attachment: fixed ;
+    background-attachment: fixed;
   }
   /* 16 modify */
   .custom-content.severity-con .body {

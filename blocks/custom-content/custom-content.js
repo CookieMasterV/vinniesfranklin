@@ -16,5 +16,6 @@ export default function decorate(block) {
       div.className = 'body';
     }
   });
+
 }
 

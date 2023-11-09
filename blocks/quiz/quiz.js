@@ -24,6 +24,7 @@ export default function decorate(block) {
   quizRowsv2.forEach((quizRowsv2, i) => {
     quizRowsv2.innerHTML += `
     <input type="range" id="range${i}" class="range-slider" min="0" max="4" step="1" value="0">
+    <p class="days"><span>没有</span><span>1–2 天</span><span>3-4 天</span><span>5-6 天</span><span>每天</span></p>
     <p class="range-slider__value">没有</p>
     `;
   });

@@ -1,5 +1,7 @@
-.quiz-questions {
+.quiz-wrapper {
   background-color: #e6f3f7;
+}
+.quiz-questions {
   max-width: 1440px;
   margin: 0 auto;
   padding-top: 127px;
@@ -9,6 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 88px;
 }
 #quiz .quiz-row {
   max-width: 768px;
@@ -16,6 +19,8 @@
 }
 #quiz h6 {
   text-align: center;
+  font-size: 26px;
+  line-height: 30px;
 }
 #quiz .range-slider {
   width: 100%;
@@ -23,7 +28,22 @@
   height: 8px;
 	-webkit-appearance: none;
   border-radius: 10px;
-  background: linear-gradient(to right, #0683ad 0%, #0683ad 0%, white 0%, white 100%);
+  position: relative;
+  /* background-image: linear-gradient(to right, #fff 0%, #fff 30%, #686868 30%, #686868 33.3%, #fff 33.3%, #fff 63.3%, #686868 63.3%, #686868 66.6%, #fff 66.6%, #fff 96.6%, #686868 96.6%, #686868 100%); */
+}
+
+#quiz .range-slider::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 768px;
+  height: 8px;
+  background: url("../../icons/thumbline.svg") no-repeat,
+  url("../../icons/thumbline.svg") no-repeat,
+  url("../../icons/thumbline.svg") no-repeat;
+  z-index: 2;
+  background-position-x: 185px, center, 558px;
+
 }
 #quiz .range-slider::-webkit-slider-thumb {
   appearance: none;
@@ -31,6 +51,8 @@
   height: 40px;
   width: 40px;
   border-radius: 50%;
+  position: relative;
+  z-index: 5;
  background: url('../../icons/range-thumb.svg') no-repeat center;
 }
 
@@ -38,10 +60,10 @@
   font-size: 16px;
   line-height: 26px;
   letter-spacing: 2px;
-  width: 61px;
+  /* width: 61px; */
+  padding: 5px 14px 5px 14px;
   height: 36px;
   text-align: center;
-  line-height: 36px;
   border-radius: 6px;
   background-color: #333132;
   display: inline-block;
@@ -59,6 +81,7 @@
 }
 .quiz-questions > .quiz-row {
   text-align: center;
+  margin-top: 74px;
 }
 .quiz-questions > .quiz-row > div {
   display: inline-block;
@@ -76,4 +99,33 @@
   display: flex;
   align-items: center;
   gap: 15px;
+}
+#quiz .days {
+  display: flex;
+  justify-content: space-between;
+}
+#quiz .days {
+  font-size: 16px;
+  line-height: 26px;
+}
+@media (max-width: 992px) {
+  #quiz h6 {
+    font-size: 18px;
+    line-height: 26px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  #quiz .quiz-row {
+    max-width: unset;
+    width: 100%;
+  }
+  .quiz-questions > .quiz-row > div {
+    width: 100%;
+  }
+  .quiz-questions > .quiz-row > div h6 {
+    justify-content: center;
+  }
+  .quiz-questions {
+    padding: 68px 20px 77px;
+  }
 }

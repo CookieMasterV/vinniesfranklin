@@ -104,6 +104,11 @@
   margin: 0 auto;
   text-align: center;
 }
+@media (max-width: 1140px)  {
+  .quiz-conent-score-list .scorewrap {
+    gap: 50px;
+  }
+}
 @media (max-width: 992px) {
   .quiz-outcome {
     padding: 60px 20px 76px;
@@ -114,6 +119,7 @@
     line-height: 58px;
     margin-bottom: 30px;
   }
+
   .quiz-outcome .quiz-conent-score h5 {
     font-size: 24px;
   }
@@ -138,4 +144,8 @@
   .quiz-conent-score-list .scorewrap > li.active {
     display: block;
   }
+
+}
+@media (max-width: 992px) {
+
 }
