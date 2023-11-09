@@ -24,7 +24,9 @@ export default function decorate(block) {
     const showScore = document.querySelector('.your-score');
     showScore.textContent = totalScore;
     const scores = document.querySelectorAll('.scorewrap>li');
-    console.log(scores);
+    const currentURL = window.location.href;
+    const languageRegex = /\/(en)\//;
+    const match = currentURL.match(languageRegex);
     scores.forEach(score => score.classList.remove('active'));
     if (totalScore >= 0 && totalScore <= 2) {
       console.log(111);
@@ -41,11 +43,23 @@ export default function decorate(block) {
     }
     const linkscore = document.querySelector('.button-container a');
     if (totalScore >= 3 && totalScore <= 16) {
-      linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment/#如果屬-輕度至中度-的異位性皮膚炎';
+      if(match) {
+        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/en/treatment#serious';
+      }else {
+        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment#serious';
+      }
     } else if (totalScore >= 17 && totalScore <= 28) {
-      linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment/#如果屬-中度至嚴重-的異位性皮膚炎';
+      if(match) {
+        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/en/treatment#very-serious';
+      }else {
+        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment#very-serious';
+      }
     } else {
-      linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment';
+      if(match) {
+        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/en/treatment';
+      }else {
+        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment';
+      }
     }
   });
 }
