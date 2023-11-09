@@ -22,7 +22,7 @@ export default function decorate(block) {
   const quizRowsv2 = quizContainer.querySelectorAll(".quiz-row");
   quizRowsv2.forEach((quizRowsv2, i) => {
     quizRowsv2.innerHTML += `
-    <input type="range" id="range${i}" class="range-slider" min="0" max="4" step="1">
+    <input type="range" id="range${i}" class="range-slider" min="0" max="4" step="1" value="0">
     <p class="range-slider__value">没有</p>
     `;
   });
@@ -30,59 +30,64 @@ export default function decorate(block) {
   submitbtn.id = 'score-submit';
   const inputrange = document.querySelectorAll('.range-slider');
   const showvalue = document.querySelectorAll('.range-slider__value');
+
+  let totalScore = 0;
   inputrange.forEach((input, i) => {
     input.addEventListener('input', (event) => {
-      const value = parseInt(event.target.value, 10);
+      const value = parseInt(event.target.value);
       const currentURL = window.location.href;
       const languageRegex = /\/(en)\//;
       const match = currentURL.match(languageRegex);
-      if (value === 0) {
-        if(match) {
-          showvalue[i].textContent = 'NO';
-        } else {
-          showvalue[i].textContent = '没有';
+      let content = '';
+      const newPosition = (value / (inputrange.max - inputrange.min)) * 100 + '%';
+      console.log(newPosition);
+      showvalue[i].style.left = newPosition;
+      const percentageValue = ((value) / (inputrange.max - inputrange.min)) * 100;
+      inputrange.style.background = `linear-gradient(to right, #0683ad 0%, #0683ad ${percentageValue}%, #fff 0%, #fff 100%)`;
+      totalScore += value;
+
+      if (match) {
+        switch (value) {
+          case 0:
+            content = 'NO';
+            break;
+          case 1:
+            content = '1-2 DAYS';
+            break;
+          case 2:
+            content = '3-4 DAYS';
+            break;
+          case 3:
+            content = '5-6 DAYS';
+            break;
+          case 4:
+            content = 'EVERY DAY';
+            break;
         }
-      } else if (value === 1) {
-        if(match) {
-          showvalue[i].textContent = '1-2 DAYS';
-        } else {
-          showvalue[i].textContent = '1-2 天';
-        }
-      } else if (value === 2) {
-        if(match) {
-          showvalue[i].textContent = '3-4 DAYS';
-        } else {
-          showvalue[i].textContent = '3-4 天';
-        }
-      } else if (value === 3) {
-        if(match) {
-          showvalue[i].textContent = '5-6 DAYS';
-        } else {
-          showvalue[i].textContent = '5-6 天';
-        }
-      } else if (value === 4) {
-        if(match) {
-          showvalue[i].textContent = 'EVERY DAY';
-        } else {
-          showvalue[i].textContent = '每天';
+      } else {
+        switch (value) {
+          case 0:
+            content = '没有';
+            break;
+          case 1:
+            content = '1-2 天';
+            break;
+          case 2:
+            content = '3-4 天';
+            break;
+          case 3:
+            content = '5-6 天';
+            break;
+          case 4:
+            content = '每天';
+            break;
         }
       }
+      showvalue[i].textContent = content;
     });
   });
-  function gitAllValues() {
-    const rangeInputs = document.querySelectorAll('.range-slider');
-    const rangeValues = [];
-    rangeInputs.forEach((input) => {
-      const value = input.value;
-      rangeValues.push(value);
-      rangeValues.map(Number);
-    });
-    const valueArr = rangeValues.map(Number)
-    const total = eval(valueArr.join("+"));
-    console.log(total);
-  }
   submitbtn.addEventListener('click', () => {
-    gitAllValues();
+    console.log('Total Score: ' + totalScore);
   });
 
 }

@@ -2,7 +2,7 @@ import { decorateIcons } from '../../scripts/lib-franklin.js';
 export default function decorate(block) {
   decorateIcons(block);
 
-  const classes = ['score', 'caption', 'score-list','remark'];
+  const classes = ['score', 'caption', 'score-list', 'remark'];
   [...classes].forEach((c, i) => {
     const section = block.children[i];
     if (section) {
@@ -11,14 +11,35 @@ export default function decorate(block) {
         const scoreWrapper = block.querySelector('.quiz-conent-score > div');
         scoreWrapper.children[2].classList.add('your-score');
       }
-      if(i == 2) {
+      if (i == 2) {
         const scoreListWrap = block.querySelector('.quiz-conent-score-list > div');
-        scoreListWrap.children[0].classList.add ("scorewrap");
+        scoreListWrap.children[0].classList.add("scorewrap");
       }
     }
   });
-  const showscore = document.querySelector('.your-score');
-  console.log(showscore);
+
+  const totalScore = 14;
+  const showScore = document.querySelector('.your-score');
+  showScore.textContent = totalScore;
+  const scores = document.querySelectorAll('.scorewrap li');
+
+  if (totalScore >= 0 && totalScore <= 2) {
+    scores[0].classList.add('active');
+  } else if (totalScore >= 3 && totalScore <= 7) {
+    scores[1].classList.add('active');
+  } else if (totalScore >= 8 && totalScore <= 16) {
+    scores[2].classList.add('active');
+  } else if (totalScore >= 17 && totalScore <= 24) {
+    scores[3].classList.add('active');
+  } else if (totalScore >= 25 && totalScore <= 28) {
+    scores[4].classList.add('active');
+  }
+  const linkscore = document.querySelector('.button-container a');
+  if (totalScore >= 3 && totalScore <= 16) {
+    linkscore.href = 'https://care4skincomhk-dev.web.pfizer/#如果屬-輕度至中度-的異位性皮膚炎';
+  } else if (totalScore >= 17 && totalScore <= 28) {
+    linkscore.href = 'https://care4skincomhk-dev.web.pfizer/#如果屬-中度至嚴重-的異位性皮膚炎';
+  }
 }
 
 

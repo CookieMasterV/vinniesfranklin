@@ -23,7 +23,7 @@
   height: 8px;
 	-webkit-appearance: none;
   border-radius: 10px;
-  background-color: var(--primary-color);
+  background: linear-gradient(to right, #0683ad 0%, #0683ad 0%, white 0%, white 100%);
 }
 #quiz .range-slider::-webkit-slider-thumb {
   appearance: none;

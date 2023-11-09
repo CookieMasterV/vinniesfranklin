@@ -37,18 +37,18 @@ export default function decorate(block) {
   window.addEventListener("scroll", fun);
   function fun() {
     let dom = document.querySelector(".path-symptoms")
-    let rect = dom.getBoundingClientRect();
-
-    let topclassBox = document.querySelector(".tab-lists")
-    if (rect.top < -900) {
-      topclassBox.classList.add('fixed');
-      topclassBox.style.top = 85;
-    }
-    if (rect.top > -900) {
-      topclassBox.classList.remove('fixed');
-      topclassBox.style.top = 85;
+    if(dom) {
+      let rect = dom.getBoundingClientRect();
+      let topclassBox = document.querySelector(".tab-lists")
+      if (rect.top < -900) {
+        topclassBox.classList.add('fixed');
+        topclassBox.style.top = 85;
+      }
+      if (rect.top > -900) {
+        topclassBox.classList.remove('fixed');
+        topclassBox.style.top = 85;
+      }
     }
   }
-
 }
 
