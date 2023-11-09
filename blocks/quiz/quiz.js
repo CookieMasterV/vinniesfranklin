@@ -1,8 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-export let quizData = {
-  totalScore: 0,
-};
-export const scoreSubmittedEvent = new Event('scoreSubmitted');
+// import { scoreSubmittedEvent } from '../../blocks/quiz-content/quiz-content';
 export default function decorate(block) {
   decorateIcons(block);
   [...block.children].forEach((row) => {
@@ -34,62 +31,74 @@ export default function decorate(block) {
   submitbtn.id = 'score-submit';
   const inputrange = document.querySelectorAll('.range-slider');
   const showvalue = document.querySelectorAll('.range-slider__value');
-  // let totalScore = 0;
   inputrange.forEach((input, i) => {
     input.addEventListener('input', (event) => {
       const value = parseInt(event.target.value);
-      const currentURL = window.location.href;
-      const languageRegex = /\/(en)\//;
-      const match = currentURL.match(languageRegex);
-      let content = '';
+
       const percentageValue = ((value) / (input.max - input.min)) * 100;
       input.style.background = `linear-gradient(to right, #0683ad 0%, #0683ad ${percentageValue}%, #fff 0%, #fff 100%)`;
-      quizData.totalScore += value;
       const newPosition = `calc(${percentageValue}% - 10px)`;
       showvalue[i].style.left = newPosition;
-      if (match) {
-        switch (value) {
-          case 0:
-            content = 'NO';
-            break;
-          case 1:
-            content = '1-2 DAYS';
-            break;
-          case 2:
-            content = '3-4 DAYS';
-            break;
-          case 3:
-            content = '5-6 DAYS';
-            break;
-          case 4:
-            content = 'EVERY DAY';
-            break;
-        }
-      } else {
-        switch (value) {
-          case 0:
-            content = '没有';
-            break;
-          case 1:
-            content = '1-2 天';
-            break;
-          case 2:
-            content = '3-4 天';
-            break;
-          case 3:
-            content = '5-6 天';
-            break;
-          case 4:
-            content = '每天';
-            break;
-        }
-      }
-      showvalue[i].textContent = content;
+      updateContent(value, i);
     });
   });
   submitbtn.addEventListener('click', () => {
-    console.log('Total Score: ' + quizData.totalScore);
-    block.dispatchEvent(scoreSubmittedEvent);
+    const lastValues = Array.from(inputrange).map(input => parseInt(input.value));
+    const totalScore = lastValues.reduce((sum, value) => sum + value, 0);
+    console.log('Total Score: ' + totalScore);
+    const scoreSubmittedEvent = new CustomEvent('scoreSubmitted', { detail: { totalScore } });
+    document.dispatchEvent(scoreSubmittedEvent);
   });
+
+  // submitbtn.addEventListener('click', () => {
+  //   const lastValues = Array.from(inputrange).map(input => parseInt(input.value));
+  //   const totalScore = lastValues.reduce((sum, value) => sum + value, 0);
+  //   console.log('Total Score: ' + totalScore);
+  //   block.dispatchEvent(scoreSubmittedEvent(totalScore));
+  // });
+  function updateContent(value, i) {
+    const currentURL = window.location.href;
+    const languageRegex = /\/(en)\//;
+    const match = currentURL.match(languageRegex);
+    let content = '';
+    if (match) {
+      switch (value) {
+        case 0:
+          content = 'NO';
+          break;
+        case 1:
+          content = '1-2 DAYS';
+          break;
+        case 2:
+          content = '3-4 DAYS';
+          break;
+        case 3:
+          content = '5-6 DAYS';
+          break;
+        case 4:
+          content = 'EVERY DAY';
+          break;
+      }
+    } else {
+      switch (value) {
+        case 0:
+          content = '没有';
+          break;
+        case 1:
+          content = '1-2 天';
+          break;
+        case 2:
+          content = '3-4 天';
+          break;
+        case 3:
+          content = '5-6 天';
+          break;
+        case 4:
+          content = '每天';
+          break;
+      }
+    }
+    showvalue[i].textContent = content;
+  }
 }
 
