@@ -1,4 +1,8 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
+export let quizData = {
+  totalScore: 0,
+};
+export const scoreSubmittedEvent = new Event('scoreSubmitted');
 export default function decorate(block) {
   decorateIcons(block);
   [...block.children].forEach((row) => {
@@ -30,7 +34,7 @@ export default function decorate(block) {
   submitbtn.id = 'score-submit';
   const inputrange = document.querySelectorAll('.range-slider');
   const showvalue = document.querySelectorAll('.range-slider__value');
-  let totalScore = 0;
+  // let totalScore = 0;
   inputrange.forEach((input, i) => {
     input.addEventListener('input', (event) => {
       const value = parseInt(event.target.value);
@@ -40,7 +44,7 @@ export default function decorate(block) {
       let content = '';
       const percentageValue = ((value) / (input.max - input.min)) * 100;
       input.style.background = `linear-gradient(to right, #0683ad 0%, #0683ad ${percentageValue}%, #fff 0%, #fff 100%)`;
-      totalScore += value;
+      quizData.totalScore += value;
       const newPosition = `calc(${percentageValue}% - 10px)`;
       showvalue[i].style.left = newPosition;
       if (match) {
@@ -84,6 +88,8 @@ export default function decorate(block) {
     });
   });
   submitbtn.addEventListener('click', () => {
-    console.log('Total Score: ' + totalScore);
+    console.log('Total Score: ' + quizData.totalScore);
+    block.dispatchEvent(scoreSubmittedEvent);
   });
 }
+

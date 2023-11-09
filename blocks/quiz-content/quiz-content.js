@@ -1,4 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
+// import { quizData, scoreSubmittedEvent } from '../../blocks/quiz/quiz';
 export default function decorate(block) {
   decorateIcons(block);
 
@@ -17,8 +18,11 @@ export default function decorate(block) {
       }
     }
   });
-
-  const totalScore = 5;
+  // document.addEventListener('scoreSubmittedEvent', () => {
+  //   const totalScore = quizData.totalScore;
+  //   console.log('Received Total Score: ' + totalScore);
+  // });
+  const totalScore = 15;
   const showScore = document.querySelector('.your-score');
   showScore.textContent = totalScore;
   const scores = document.querySelectorAll('.scorewrap li');
