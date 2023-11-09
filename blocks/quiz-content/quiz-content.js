@@ -14,11 +14,11 @@ export default function decorate(block) {
       if(i == 2) {
         const scoreListWrap = block.querySelector('.quiz-conent-score-list > div');
         scoreListWrap.children[0].classList.add ("scorewrap");
-
       }
     }
   });
-
+  const showscore = document.querySelector('.your-score');
+  console.log(showscore);
 }
 
 
