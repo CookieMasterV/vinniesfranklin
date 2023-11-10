@@ -23,14 +23,12 @@ export default function decorate(block) {
         event.preventDefault();
         block.classList.toggle('active');
         const clickedLink = link.parentElement;
-        const firstListItem = firstUl.querySelector('li');
         const firstli = firstUl.querySelector('li');
         const tempInnerHTML = firstli.innerHTML;
         firstli.innerHTML = clickedLink.innerHTML;
         clickedLink.innerHTML = tempInnerHTML;
         const targetAnchor = link.getAttribute('href').substring(1);
         console.log(targetAnchor);
-        const targetElement = document.getElementById(targetAnchor);
         if (targetElement) {
           targetElement.scrollIntoView({ behavior: 'smooth' });
         }
