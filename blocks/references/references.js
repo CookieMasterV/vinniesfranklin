@@ -3,7 +3,6 @@ import { decorateIcons } from '../../scripts/lib-franklin.js';
 function expandReferences() {
   const referencesContent = document.querySelector('.references-content');
   const readMoreButton = document.querySelector('.read-more');
-  console.log(referencesContent,readMoreButton);
   referencesContent.classList.add('view-all');
   readMoreButton.style.display = 'none';
 }

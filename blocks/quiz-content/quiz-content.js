@@ -42,24 +42,13 @@ export default function decorate(block) {
       scores[4].classList.add('active');
     }
     const linkscore = document.querySelector('.button-container a');
+    const currentDomain = window.location.origin;
     if (totalScore >= 3 && totalScore <= 16) {
-      if(match) {
-        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/en/treatment#serious';
-      }else {
-        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment#serious';
-      }
+      linkscore.href = `${currentDomain}${match ? '/en/treatment#serious' : '/treatment#serious'}`;
     } else if (totalScore >= 17 && totalScore <= 28) {
-      if(match) {
-        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/en/treatment#very-serious';
-      }else {
-        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment#very-serious';
-      }
+      linkscore.href = `${currentDomain}${match ? '/en/treatment#very-serious' : '/treatment#very-serious'}`;
     } else {
-      if(match) {
-        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/en/treatment';
-      }else {
-        linkscore.href = 'https://care4skincomhk-dev.web.pfizer/treatment';
-      }
+      linkscore.href = `${currentDomain}${match ? '/en/treatment' : '/treatment'}`;
     }
   });
 }

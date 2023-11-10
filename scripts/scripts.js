@@ -87,12 +87,27 @@ async function loadLazy(doc) {
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
+
   if (hash && element) {
     element.scrollIntoView({
       behavior: 'smooth',
     });
   }
+  var links = document.querySelectorAll('a[href^="#"]');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function(e) {
+      e.preventDefault();
 
+      var target = document.querySelector(this.getAttribute('href'));
+      var offsetTop = target.offsetTop;
+      console.log(target.offsetTop);
+
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    });
+  }
   const goTop = doc.createElement('span');
   goTop.className = 'go-top icon iconfont icon-up';
   goTop.addEventListener('click', () => {

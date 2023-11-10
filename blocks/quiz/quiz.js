@@ -21,10 +21,24 @@ export default function decorate(block) {
 
   const quizRowsv2 = quizContainer.querySelectorAll(".quiz-row");
   quizRowsv2.forEach((quizRowsv2, i) => {
+    const languageRegex = /\/(en)\//; // 语言环境的正则表达式
+    const match = window.location.href.match(languageRegex);
+    let daysLabels;
+    if (match) {
+      daysLabels = ['None', '1–2 Days', '3–4 Days', '5–6 Days', 'Every Day'];
+    } else {
+      daysLabels = ['没有', '1–2 天', '3–4 天', '5–6 天', '每天'];
+    }
     quizRowsv2.innerHTML += `
-    <input type="range" id="range${i}" class="range-slider" min="0" max="4" step="1" value="0">
-    <p class="days"><span>没有</span><span>1–2 天</span><span>3-4 天</span><span>5-6 天</span><span>每天</span></p>
-    <p class="range-slider__value">没有</p>
+      <input type="range" id="range${i}" class="range-slider" min="0" max="4" step="1" value="0">
+      <p class="days">
+        <span>${daysLabels[0]}</span>
+        <span>${daysLabels[1]}</span>
+        <span>${daysLabels[2]}</span>
+        <span>${daysLabels[3]}</span>
+        <span>${daysLabels[4]}</span>
+      </p>
+      <p class="range-slider__value">${daysLabels[0]}</p>
     `;
   });
   const submitbtn = block.children[1].children[0];

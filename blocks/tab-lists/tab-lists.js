@@ -5,7 +5,7 @@ export default function decorate(block) {
   const firstUl = block.querySelector('.tab-lists ul:first-child');
   const secondUl = block.querySelector('.tab-lists ul:nth-child(2)');
   const tabLinks = document.querySelectorAll('.tab-lists li a');
-  // const firstUlItems = firstUl.querySelectorAll('li');
+  const firstUlItems = firstUl.querySelectorAll('li');
   if (firstUl && secondUl) {
     const firstUlItems = firstUl.querySelectorAll('li');
     firstUl.appendChild(secondUl);
@@ -21,7 +21,8 @@ export default function decorate(block) {
     link.addEventListener('click', (event) => {
       if (window.innerWidth < 992) {
         event.preventDefault();
-        block.classList.toggle('active');
+        // block.classList.toggle('active');
+        console.log(block.classList);
         const clickedLink = link.parentElement;
         const firstli = firstUl.querySelector('li');
         const tempInnerHTML = firstli.innerHTML;
@@ -29,10 +30,16 @@ export default function decorate(block) {
         clickedLink.innerHTML = tempInnerHTML;
         const targetAnchor = link.getAttribute('href').substring(1);
         console.log(targetAnchor);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
       }
+      setTimeout(() => {
+        const target = document.querySelector(link.getAttribute('href'));
+        const offsetTop = target.offsetTop;
+        console.log(offsetTop);
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }, 0);
     });
   });
 
