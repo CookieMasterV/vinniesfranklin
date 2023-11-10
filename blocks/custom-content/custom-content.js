@@ -16,24 +16,22 @@ export default function decorate(block) {
       div.className = 'body';
     }
   });
-  // document.addEventListener('scoreSubmitted', (event) => {}
 
-  // )
-  window.addEventListener("scroll", fun);
-  function fun() {
-    const dom = document.querySelector(".path-self-assessment");
-    if(dom) {
-      const rect = dom.getBoundingClientRect();
-      const topclassBox = document.querySelector(".quiz-head")
-      if (rect.top < -900) {
-        topclassBox.classList.add('fixed');
-        topclassBox.style.top = 0;
-      }
-      if (rect.top > -900) {
-        topclassBox.classList.remove('fixed');
-        topclassBox.style.top = 0;
-      }
-    }
-  }
+  // window.addEventListener("scroll", fun);
+  // function fun() {
+  //   const dom = document.querySelector(".path-self-assessment");
+  //   if(dom) {
+  //     const rect = dom.getBoundingClientRect();
+  //     const topclassBox = document.querySelector(".quiz-head")
+  //     if (rect.top < -900) {
+  //       topclassBox.classList.add('fixed');
+  //       topclassBox.style.top = 0;
+  //     }
+  //     if (rect.top > -900) {
+  //       topclassBox.classList.remove('fixed');
+  //       topclassBox.style.top = 0;
+  //     }
+  //   }
+  // }
 }
 

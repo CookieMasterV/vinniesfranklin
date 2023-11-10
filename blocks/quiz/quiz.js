@@ -95,5 +95,23 @@ export default function decorate(block) {
     }
     showvalue[i].textContent = content;
   }
+  window.addEventListener("scroll", function () {
+    const quizHead = document.querySelector(".quiz-head");
+    const quizQuestions = document.querySelector(".quiz-questions");
+    const scoreAnchor = document.getElementById("score");
+
+    if (quizHead && quizQuestions) {
+      const rectQuestions = quizQuestions.getBoundingClientRect();
+      const rectScoreAnchor = scoreAnchor.getBoundingClientRect();
+
+      const triggerFixedHeight = rectQuestions.top + window.scrollY;
+      const cancelFixedHeight = rectScoreAnchor.top + window.scrollY;
+      if (window.scrollY >= triggerFixedHeight && window.scrollY <= cancelFixedHeight) {
+        quizHead.classList.add('fixed');
+      } else {
+        quizHead.classList.remove('fixed');
+      }
+    }
+  });
 }
 
