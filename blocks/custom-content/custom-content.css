@@ -390,6 +390,12 @@
   .custom-content.severity-con .body {
     max-width: unset;
   }
+
+
+  .evaluate-con.bg-3 {
+    background: url("../../imgs/evolute-bg-mb.png") no-repeat center;
+    background-size: 100% 100% !important;
+  }
 }
 
 @media (min-width: 1440px) {

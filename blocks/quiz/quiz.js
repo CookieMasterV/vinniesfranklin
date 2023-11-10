@@ -42,11 +42,14 @@ export default function decorate(block) {
       updateContent(value, i);
     });
   });
+
   submitbtn.addEventListener('click', () => {
     const lastValues = Array.from(inputrange).map(input => parseInt(input.value));
     const totalScore = lastValues.reduce((sum, value) => sum + value, 0);
     const scoreSubmittedEvent = new CustomEvent('scoreSubmitted', { detail: { totalScore } });
     document.dispatchEvent(scoreSubmittedEvent);
+    const scoreElement = document.getElementById('score');
+    scoreElement.scrollIntoView({ behavior: 'smooth' });
   });
   function updateContent(value, i) {
     const currentURL = window.location.href;

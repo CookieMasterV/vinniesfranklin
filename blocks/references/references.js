@@ -29,7 +29,7 @@ export default function decorate(block) {
     });
   }
   // expandReferences();
-  const readMoreButton = document.querySelector('.read-more');
+  const readMoreButton = block.querySelector('.read-more');
   readMoreButton.addEventListener('click', () => {
     expandReferences();
   }
