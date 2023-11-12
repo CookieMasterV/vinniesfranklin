@@ -21,7 +21,7 @@ export default function decorate(block) {
 
   const quizRowsv2 = quizContainer.querySelectorAll(".quiz-row");
   quizRowsv2.forEach((quizRowsv2, i) => {
-    const languageRegex = /\/(en)\//; // 语言环境的正则表达式
+    const languageRegex = /\/(en)\//;
     const match = window.location.href.match(languageRegex);
     let daysLabels;
     if (match) {
@@ -45,17 +45,37 @@ export default function decorate(block) {
   submitbtn.id = 'score-submit';
   const inputrange = document.querySelectorAll('.range-slider');
   const showvalue = document.querySelectorAll('.range-slider__value');
+  const daysContainers = document.querySelectorAll('.quiz-row .days');
   inputrange.forEach((input, i) => {
     input.addEventListener('input', (event) => {
       const value = parseInt(event.target.value);
-
       const percentageValue = ((value) / (input.max - input.min)) * 100;
       input.style.background = `linear-gradient(to right, #0683ad 0%, #0683ad ${percentageValue}%, #fff 0%, #fff 100%)`;
-      const newPosition = `calc(${percentageValue}% - 10px)`;
+      console.log(showvalue[i]);
+      let newPosition;
+      if (value === 0) {
+        newPosition = `calc(0% - 10px)`;
+      } else if (value === 4) {
+        newPosition = `calc(100% - 50px)`;
+      } else {
+        newPosition = `calc(${percentageValue}% - ${showvalue[i].offsetWidth / 2}px + 4px)`;
+      }
       showvalue[i].style.left = newPosition;
+      if (value === 0) {
+        showvalue[0].style.left = -8;
+      }
       updateContent(value, i);
+      handleInput(input, daysContainers[i]);
     });
+    handleInput(input, daysContainers[i]);
   });
+  function handleInput(input, daysContainer) {
+    const value = parseInt(input.value);
+    const spans = daysContainer.querySelectorAll('span');
+    spans.forEach((span, index) => {
+      span.style.opacity = index === value ? '0' : '1';
+    });
+  }
 
   submitbtn.addEventListener('click', () => {
     const lastValues = Array.from(inputrange).map(input => parseInt(input.value));
@@ -111,20 +131,16 @@ export default function decorate(block) {
   }
   window.addEventListener("scroll", function () {
     const quizHead = document.querySelector(".quiz-head");
-    const quizQuestions = document.querySelector(".quiz-questions");
-    const scoreAnchor = document.getElementById("score");
-
-    if (quizHead && quizQuestions) {
-      const rectQuestions = quizQuestions.getBoundingClientRect();
-      const rectScoreAnchor = scoreAnchor.getBoundingClientRect();
-
-      const triggerFixedHeight = rectQuestions.top + window.scrollY;
-      const cancelFixedHeight = rectScoreAnchor.top + window.scrollY;
-      if (window.scrollY >= triggerFixedHeight && window.scrollY <= cancelFixedHeight) {
-        quizHead.classList.add('fixed');
-      } else {
-        quizHead.classList.remove('fixed');
-      }
+    if (document.querySelector('.quiz-head').parentNode.getBoundingClientRect().height >= document.querySelector('.quiz-questions').getBoundingClientRect().top) {
+      quizHead.classList.add('fixed');
+      quizHead.style.zIndex = 999;
+      quizHead.style.opacity = 1;
+    } else {
+      quizHead.classList.remove('fixed');
+    }
+    if (document.querySelector('.quiz-questions').getBoundingClientRect().height + document.querySelector('.quiz-content').getBoundingClientRect().top <= window.scrollY) {
+      quizHead.style.zIndex = -1;
+      quizHead.style.opacity = 0;
     }
   });
 }

@@ -30,16 +30,17 @@ export default function decorate(block) {
         clickedLink.innerHTML = tempInnerHTML;
         const targetAnchor = link.getAttribute('href').substring(1);
         console.log(targetAnchor);
+        setTimeout(() => {
+          const target = document.querySelector(link.getAttribute('href'));
+          const offsetTop = target.offsetTop;
+          console.log(offsetTop);
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }, 0);
       }
-      setTimeout(() => {
-        const target = document.querySelector(link.getAttribute('href'));
-        const offsetTop = target.offsetTop;
-        console.log(offsetTop);
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }, 0);
+
     });
   });
 

@@ -26,22 +26,22 @@ export default function decorate(block) {
       section.classList.add(`hero-${c}`);
       if (i === 0) {
         const logo = document.createElement('a');
-        const pic = section.querySelector('picture');
-        if (match) {
-          logo.href = '/en/';
-        } else {
-          logo.href = '/';
-        }
-        if (pic) {
-          logo.innerHTML = section.innerHTML
-        } else {
-          if(isMatch) {
-            logo.innerHTML = '<img loading="lazy" alt="Logo" width="128" height="54" src="/imgs/white-logo.svg">';
-          } else {
-          logo.innerHTML = '<img loading="lazy" alt="Logo" width="128" height="54" src="/imgs/logo-blue.svg">';
-          }
-        }
-        logo.setAttribute('sc:linkname', `global header|navigation|${messages.home}`);
+        // const pic = section.querySelector('picture');
+        // if (match) {
+        //   logo.href = '/en/';
+        // } else {
+        //   logo.href = '/';
+        // }
+        // if (pic) {
+        //   logo.innerHTML = section.innerHTML
+        // } else {
+        //   if(isMatch) {
+        //     logo.innerHTML = '<img loading="lazy" alt="Logo" width="128" height="54" src="/imgs/white-logo.svg">';
+        //   } else {
+        //   logo.innerHTML = '<img loading="lazy" alt="Logo" width="128" height="54" src="/imgs/logo-blue.svg">';
+        //   }
+        // }
+        // logo.setAttribute('sc:linkname', `global header|navigation|${messages.home}`);
         section.textContent = '';
         section.append(logo);
       }

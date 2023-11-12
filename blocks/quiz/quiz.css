@@ -69,6 +69,8 @@
   display: inline-block;
   color: #fff;
   position: relative;
+  top: -25px;
+  left: -8px;
 }
 .range-slider__value::before {
   content: '';
@@ -76,7 +78,7 @@
   width: 14px;
   height: 9px;
   top: -8px;
-  left: 25px;
+  left: 42%;
   background: url("../../icons/singe.svg") no-repeat center;
 }
 .quiz-questions > .quiz-row {

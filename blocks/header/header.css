@@ -190,9 +190,9 @@ header nav .nav-sections ul > li > ul {
 header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
-header nav .nav-tools {
+/* header nav .nav-tools {
   display: none;
-}
+} */
 @media (min-width: 900px) {
   header nav .nav-sections {
     display: block;

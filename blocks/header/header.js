@@ -100,11 +100,11 @@ export default async function decorate(block) {
     const nav = document.createElement('nav');
     nav.id = 'nav';
     const replacedText = html.replace(/<li>(.*?)\((.*?)\)<\/li>/, (match, content, value) =>
-    `<li class="${value}">${content}</li>`
-  );
+      `<li class="${value}">${content}</li>`
+    );
     nav.innerHTML = replacedText;;
 
-    const classes = [ 'sections', 'tools'];
+    const classes = ['sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
       if (section) {
@@ -112,8 +112,30 @@ export default async function decorate(block) {
       }
     });
     const toolLogo = nav.querySelector('.nav-tools');
-    toolLogo.innerHTML = '<img loading="lazy" alt="Logo" width="128" height="54" src="/imgs/logo-blue.svg">';
-    toolLogo.setAttribute('sc:linkname', `global header|navigation|${messages.home}`);
+    const headlogo = document.createElement('a');
+    const logoImg = document.createElement('img');
+    headlogo.append(logoImg);
+    const languageRegex = /\/(en)\//;  // 假设语言代码在 URL 中，例如 "/en/"
+    const match = window.location.href.match(languageRegex);
+    const currentPath = window.location.pathname;
+    function updateLogo() {
+      let logoSrc = '../../imgs/logo-blue.svg';
+      if (window.innerWidth > 768) {
+        if (currentPath === '/') {
+          logoSrc = '../../imgs/white-logo.svg';
+          headlogo.href = match ? '/en/' : '/';
+        }
+      }
+      logoImg.src = logoSrc;
+      if (window.innerWidth <= 768) {
+        headlogo.href = match ? '/en/' : '/';
+      }
+    }
+    updateLogo();
+    window.addEventListener('resize', updateLogo);
+    window.addEventListener('scroll', updateLogo);
+    headlogo.setAttribute('sc:linkname', `global header|navigation|${messages.home}`);
+    toolLogo.append(headlogo);
     const navSections = nav.querySelector('.nav-sections');
     navSections.children[0].classList.add('nav-anchor');
     navSections.children[1].classList.add('nav-pathlink');

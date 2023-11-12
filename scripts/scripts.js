@@ -93,29 +93,26 @@ async function loadLazy(doc) {
       behavior: 'smooth',
     });
   }
-  var links = document.querySelectorAll('a[href^="#"]');
-  for (var i = 0; i < links.length; i++) {
-    links[i].addEventListener('click', function(e) {
-      e.preventDefault();
-
-      var target = document.querySelector(this.getAttribute('href'));
-      var offsetTop = target.offsetTop;
-      console.log(target.offsetTop);
-
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    });
-  }
   const goTop = doc.createElement('span');
   goTop.className = 'go-top icon iconfont icon-up';
+  const footer = document.querySelector('.footer');
+  window.addEventListener('scroll', () => {
+    const footerRect = footer.getBoundingClientRect();
+    const isAboveFooter = footerRect.top > window.innerHeight;
+    const topMargin = isAboveFooter
+      ? '10%'
+      : `calc(${footer.offsetHeight + 34}px)`;
+      console.log(footer.offsetHeight);
+    goTop.style.bottom = topMargin;
+  });
+
   goTop.addEventListener('click', () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: 'smooth'
     });
   });
+
   doc.body.append(goTop);
 
   if (document.querySelector('a[href$=".pdf"]')) document.querySelector('a[href$=".pdf"]').setAttribute('target', '_blank');

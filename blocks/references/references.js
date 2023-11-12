@@ -1,11 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
-function expandReferences() {
-  const referencesContent = document.querySelector('.references-content');
-  const readMoreButton = document.querySelector('.read-more');
-  referencesContent.classList.add('view-all');
-  readMoreButton.style.display = 'none';
-}
 export default function decorate(block) {
   const classes = ['title', 'content', 'more'];
   [...classes].forEach((c, i) => {
@@ -21,18 +15,22 @@ export default function decorate(block) {
     }
   })
   decorateIcons(block);
+  const refmore = block.children[2];
+  refmore.querySelector('a').classList = 'read-more';
   if (block.querySelector('a')) {
     block.querySelectorAll('a').forEach((a) => {
       a.setAttribute('sc:linkname', `${window.metaTitle}|navigation|${a.innerText}`);
-      a.classList = "read-more";
     });
   }
-  // expandReferences();
   const readMoreButton = block.querySelector('.read-more');
+  function expandReferences() {
+    const referencesContent = block.querySelector('.references-content');
+    const readMoreButton = block.querySelector('.read-more');
+    referencesContent.classList.add('view-all');
+    readMoreButton.style.display = 'none';
+  }
   readMoreButton.addEventListener('click', () => {
     expandReferences();
   }
   )
 }
-
-
