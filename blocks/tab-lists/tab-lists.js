@@ -44,20 +44,28 @@ export default function decorate(block) {
     });
   });
 
-  window.addEventListener("scroll", fun);
-  function fun() {
-    let dom = document.querySelector(".path-symptoms")
-    if (dom) {
-      let rect = dom.getBoundingClientRect();
-      let topclassBox = document.querySelector(".tab-lists")
-      if (rect.top < -900) {
-        topclassBox.classList.add('fixed');
-        topclassBox.style.top = 85;
+  const heroBanner = document.querySelector('.hero.banner-text');
+  const tabLists = document.querySelector('.tab-lists');
+  const handleScroll = () => {
+    const heroBannerBottom = heroBanner.getBoundingClientRect().bottom;
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      const headerHeight = 73;
+      if (heroBannerBottom <= headerHeight) {
+        tabLists.classList.add('fixed');
+      } else {
+        tabLists.classList.remove('fixed');
       }
-      if (rect.top > -900) {
-        topclassBox.classList.remove('fixed');
-        topclassBox.style.top = 85;
+    } else {
+      const heroBannerBottom = heroBanner.getBoundingClientRect().bottom;
+      if (heroBannerBottom <= 0) {
+        tabLists.classList.add('fixed');
+      } else {
+        tabLists.classList.remove('fixed');
       }
     }
   }
+  handleScroll();
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('resize', handleScroll);
 }

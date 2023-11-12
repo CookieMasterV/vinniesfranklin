@@ -102,7 +102,6 @@ async function loadLazy(doc) {
     const topMargin = isAboveFooter
       ? '10%'
       : `calc(${footer.offsetHeight + 34}px)`;
-      console.log(footer.offsetHeight);
     goTop.style.bottom = topMargin;
   });
 
