@@ -1,4 +1,4 @@
-import { decorateIcons , isSvg, setSvg} from '../../scripts/lib-franklin.js';
+import { decorateIcons, isSvg, setSvg } from '../../scripts/lib-franklin.js';
 
 export default function decorate(block) {
   decorateIcons(block);
@@ -22,4 +22,15 @@ export default function decorate(block) {
       }
     });
   });
+  const linkbtn = block.querySelector('.cards-text .button-container a');
+  let clickCount = 0;
+  const updateLinkName = () => {
+    const linkName = `${window.metaTitle}|navigation|${linkbtn.innerText}|clickCount:${clickCount}`;
+    linkbtn.setAttribute('sc:linkname', linkName);
+  };
+  linkbtn.addEventListener('click', () => {
+    clickCount++;
+    updateLinkName();
+  })
+  updateLinkName();
 }

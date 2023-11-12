@@ -42,7 +42,11 @@ export default function decorate(block) {
     `;
   });
   const submitbtn = block.children[1].children[0];
-  submitbtn.id = 'score-submit';
+  const newLink = document.createElement('a');
+  newLink.innerHTML = submitbtn.innerHTML;
+  submitbtn.parentNode.replaceChild(newLink, submitbtn);
+  const updatedSubmitbtn = newLink;
+  updatedSubmitbtn.id = 'score-submit';
   const inputrange = document.querySelectorAll('.range-slider');
   const showvalue = document.querySelectorAll('.range-slider__value');
   const daysContainers = document.querySelectorAll('.quiz-row .days');
@@ -51,7 +55,6 @@ export default function decorate(block) {
       const value = parseInt(event.target.value);
       const percentageValue = ((value) / (input.max - input.min)) * 100;
       input.style.background = `linear-gradient(to right, #0683ad 0%, #0683ad ${percentageValue}%, #fff 0%, #fff 100%)`;
-      console.log(showvalue[i]);
       let newPosition;
       if (value === 0) {
         newPosition = `calc(0% - 10px)`;
@@ -76,15 +79,22 @@ export default function decorate(block) {
       span.style.opacity = index === value ? '0' : '1';
     });
   }
-
-  submitbtn.addEventListener('click', () => {
+  let clickCount = 0;
+  const linktext = updatedSubmitbtn.querySelector('h6');
+  const updateLinkName = () => {
+    updatedSubmitbtn.setAttribute('sc:linkname', `${window.metaTitle}|submit|${linktext.innerText}|clickCount:${clickCount}`);
+  };
+  updatedSubmitbtn.addEventListener('click', () => {
+    clickCount++;
     const lastValues = Array.from(inputrange).map(input => parseInt(input.value));
     const totalScore = lastValues.reduce((sum, value) => sum + value, 0);
     const scoreSubmittedEvent = new CustomEvent('scoreSubmitted', { detail: { totalScore } });
     document.dispatchEvent(scoreSubmittedEvent);
     const scoreElement = document.getElementById('score');
     scoreElement.scrollIntoView({ behavior: 'smooth' });
+    updateLinkName();
   });
+  updateLinkName();
   function updateContent(value, i) {
     const currentURL = window.location.href;
     const languageRegex = /\/(en)\//;
@@ -143,5 +153,6 @@ export default function decorate(block) {
       quizHead.style.opacity = 0;
     }
   });
+
 }
 

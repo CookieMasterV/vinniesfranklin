@@ -51,6 +51,20 @@ export default function decorate(block) {
       linkscore.href = `${currentDomain}${match ? '/en/treatment' : '/treatment'}`;
     }
   });
+  const morebtn = block.querySelector('.quiz-conent-score-list .button-container a');
+  let clickCount = 0;
+  morebtn.addEventListener('click', () => {
+    clickCount++;
+    updateLinkName();
+  })
+  const updateLinkName = () => {
+    morebtn.setAttribute('sc:linkname', `${window.metaTitle}|navigation|${morebtn.innerText}|clickCount:${clickCount}`);
+  };
+  linkbtn.addEventListener('click', () => {
+    clickCount++;
+    updateLinkName();
+  });
+  updateLinkName();
 }
 
 

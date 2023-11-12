@@ -19,10 +19,9 @@ export default function decorate(block) {
   }
   tabLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
-      if (window.innerWidth < 992) {
+      if (window.innerWidth <= 992) {
         event.preventDefault();
         // block.classList.toggle('active');
-        console.log(block.classList);
         const clickedLink = link.parentElement;
         const firstli = firstUl.querySelector('li');
         const tempInnerHTML = firstli.innerHTML;
@@ -30,17 +29,16 @@ export default function decorate(block) {
         clickedLink.innerHTML = tempInnerHTML;
         const targetAnchor = link.getAttribute('href').substring(1);
         console.log(targetAnchor);
-        setTimeout(() => {
-          const target = document.querySelector(link.getAttribute('href'));
-          const offsetTop = target.offsetTop;
-          console.log(offsetTop);
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
-        }, 0);
-      }
 
+      }
+      setTimeout(() => {
+        const target = document.querySelector(link.getAttribute('href'));
+        const offsetTop = target.offsetTop;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }, 0);
     });
   });
 
