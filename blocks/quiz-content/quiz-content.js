@@ -36,6 +36,21 @@ export default function decorate(block) {
     }
   }
   updateLinkScoreHref();
+  function FormWorkflow(a, b, c) {
+    const dataLayer = [];
+    dataLayer.push({
+      event: 'pfFormWorkflow',
+      pfFormWorkflow: {
+        formName: a,
+        formAction: b,
+        formPageLoad: c,
+      },
+    });
+    const event = new CustomEvent('pfAnalytics', {
+      detail: dataLayer,
+    });
+    document.querySelector('body').dispatchEvent(event);
+  }
   document.addEventListener('scoreSubmitted', (event) => {
     const totalScore = event.detail.totalScore;
     const showScore = document.querySelector('.your-score');
@@ -59,15 +74,7 @@ export default function decorate(block) {
       scores[4].classList.add('active');
     }
     updateLinkScoreHref();
-    // const linkscore = document.querySelector('.button-container a');
-    // const currentDomain = window.location.origin;
-    // if (totalScore >= 0 && totalScore <= 16) {
-    //   linkscore.href = `${currentDomain}${match ? '/en/treatment#serious' : '/treatment#serious'}`;
-    // } else if (totalScore >= 17 && totalScore <= 28) {
-    //   linkscore.href = `${currentDomain}${match ? '/en/treatment#very-serious' : '/treatment#very-serious'}`;
-    // } else {
-    //   linkscore.href = `${currentDomain}${match ? '/en/treatment' : '/treatment'}`;
-    // }
+    FormWorkflow('quizscore', 'successful', true)
   });
 
   const morebtn = block.querySelector('.quiz-conent-score-list .button-container a');

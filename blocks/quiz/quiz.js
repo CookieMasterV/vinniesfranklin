@@ -50,6 +50,22 @@ export default function decorate(block) {
   const inputrange = document.querySelectorAll('.range-slider');
   const showvalue = document.querySelectorAll('.range-slider__value');
   const daysContainers = document.querySelectorAll('.quiz-row .days');
+  function formWorkflowInput(a, b, c, d) {
+    const dataLayer = [];
+    dataLayer.push({
+      event: 'pfFormWorkflowInput',
+      pfFormWorkflowInput: {
+        formName: a,
+        formQuestion: b,
+        formAnswer: c,
+        formQuestionIndex: d,
+      },
+    });
+    const event = new CustomEvent('pfAnalytics', {
+      detail: dataLayer,
+    });
+    document.querySelector('body').dispatchEvent(event);
+  }
   inputrange.forEach((input, i) => {
     input.addEventListener('input', (event) => {
       const value = parseInt(event.target.value);
@@ -69,6 +85,7 @@ export default function decorate(block) {
       }
       updateContent(value, i);
       handleInput(input, daysContainers[i]);
+      formWorkflowInput('quiz', i, value, i);
     });
     handleInput(input, daysContainers[i]);
   });
