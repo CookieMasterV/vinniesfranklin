@@ -19,6 +19,23 @@ export default function decorate(block) {
   });
   const scores2 = document.querySelectorAll('.scorewrap>li');
   scores2[0].classList.add("active");
+  const updateLinkScoreHref = () => {
+    const totaltext = block.querySelector('.your-score').innerText;
+    const totalScore = parseInt(totaltext, 10);
+    const linkscore = document.querySelector('.button-container a');
+    const currentDomain = window.location.origin;
+    const currentURL = window.location.href;
+    const languageRegex = /\/(en)\//;
+    const match = currentURL.match(languageRegex);
+    if (totalScore >= 0 && totalScore <= 16) {
+      linkscore.href = `${currentDomain}${match ? '/en/treatment#serious' : '/treatment#serious'}`;
+    } else if (totalScore >= 17 && totalScore <= 28) {
+      linkscore.href = `${currentDomain}${match ? '/en/treatment#very-serious' : '/treatment#very-serious'}`;
+    } else {
+      linkscore.href = `${currentDomain}${match ? '/en/treatment' : '/treatment'}`;
+    }
+  }
+  updateLinkScoreHref();
   document.addEventListener('scoreSubmitted', (event) => {
     const totalScore = event.detail.totalScore;
     const showScore = document.querySelector('.your-score');
@@ -41,16 +58,18 @@ export default function decorate(block) {
     } else if (totalScore >= 25 && totalScore <= 28) {
       scores[4].classList.add('active');
     }
-    const linkscore = document.querySelector('.button-container a');
-    const currentDomain = window.location.origin;
-    if (totalScore >= 3 && totalScore <= 16) {
-      linkscore.href = `${currentDomain}${match ? '/en/treatment#serious' : '/treatment#serious'}`;
-    } else if (totalScore >= 17 && totalScore <= 28) {
-      linkscore.href = `${currentDomain}${match ? '/en/treatment#very-serious' : '/treatment#very-serious'}`;
-    } else {
-      linkscore.href = `${currentDomain}${match ? '/en/treatment' : '/treatment'}`;
-    }
+    updateLinkScoreHref();
+    // const linkscore = document.querySelector('.button-container a');
+    // const currentDomain = window.location.origin;
+    // if (totalScore >= 0 && totalScore <= 16) {
+    //   linkscore.href = `${currentDomain}${match ? '/en/treatment#serious' : '/treatment#serious'}`;
+    // } else if (totalScore >= 17 && totalScore <= 28) {
+    //   linkscore.href = `${currentDomain}${match ? '/en/treatment#very-serious' : '/treatment#very-serious'}`;
+    // } else {
+    //   linkscore.href = `${currentDomain}${match ? '/en/treatment' : '/treatment'}`;
+    // }
   });
+
   const morebtn = block.querySelector('.quiz-conent-score-list .button-container a');
   let clickCount = 0;
   morebtn.addEventListener('click', () => {
